@@ -1,4 +1,501 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background: #E5E5E5;
+    background-color: #FFFFFF;
+    --green: #B5CA00;
+}
+
+.container { 
+    margin: 0 auto;
+    max-width: 70%;
+}
+
+.section__sign {
+    margin: 60px 0;
+    text-align: center;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 47px;
+}
+
+/*HEADER текст, кнопка, фото*/
+
+.headmobile__container {
+    display: none;
+}
+
+.head__container {
+    display: flex;
+    justify-content: right;
+}
+
+.head__description {
+    padding-top: 164px;
+}
+
+.head__description-main {
+    color: var(--green);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+.head__description-sub {
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 47px;
+}
+
+.head__description-button {
+    background-color: var(--green);
+    border-radius: 4px;
+    border: 0px;
+    width: 295px;
+    height: 60px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.head__img-box {
+    max-width: 900px;
+    max-height: 550px;
+}
+
+/*"МЫ ПРЕДЛАГАЕМ"*/
+
+.suggest__items {
+    display: flex;
+    justify-content: space-between;
+}
+
+.suggest__items-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.suggest__items-icon {
+    height: 100px;
+    width: 100px;
+    margin-left: 30px;/*это вместо центрирования картинки, так выглядит ближе к макету*/
+}
+
+.suggest__item-sign {
+    text-align: left;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 27px;
+}
+
+.suggest__items-line {
+    display: block;
+    width: 94px;
+    height: 1px;
+    background-color: #F6C6CF;
+    border: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+.suggest__items-description {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+/*КАК СТАТЬ ЧАСТЬЮ КОМАНДЫ*/
+.team__items {  
+    display: flex;
+    justify-content: space-between;
+}
+
+.team__items-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.team__items-icon {
+    width: 60px;
+    height: 60px;
+}
+
+.team__items-sign {
+    margin-top: 40px;
+    margin-bottom: 23px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 27px;
+}
+
+.team__items-description {
+    margin-top: 0px;
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+/*АНКЕТА*/
+
+
+.form__sign-box {
+    margin-top: 100px;
+    display: flex;
+}
+
+.form__sign-text {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 47px;
+    margin-right: 15px;
+}
+
+.form__sign-img {
+    margin-bottom: 40px;
+}
+
+.form__main-container {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    background: #8664C6;
+    display: flex;
+}
+
+.form__main-img {
+    margin-top: 100px;
+    margin-left: 15%;
+    margin-right: 80px;
+    max-width: 135px;
+    max-height: 399px;
+}
+
+/*фиолетовый контейнер*/
+
+
+.form__main-form-inputscontainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    margin-bottom: 100px;
+    margin-right: 15%;
+}
+
+.form__main-form-input-sign {
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.form__main-form-inputscolumn {
+    margin-left: 120px;
+}
+
+.form__main-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: 940px;
+}
+
+/*инпуты*/
+.form__main-form-input {
+    width: 360px;
+    height: 50px;
+    background: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: #CBC6C6;
+
+}
+
+.form__main-form-btn {
+    width: 295px;
+    height: 60px;
+    background: var(--green);
+    border-radius: 4px;
+    border: 0px;
+
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: white;
+
+    margin-right:15%;
+}
+
+
+
+/*вопросы*/
+.faq__container {
+    margin-top: 600px;
+}
+
+.faq__list-term {
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 27px;
+    margin-top: 35px;
+    list-style: none;
+}
+
+.faq__list-descr {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    margin-top: 10px;
+    margin-left: 0px;
+    list-style-type: none;
+}
+
+.faq__btn {
+    width: 295px;
+    height: 60px;
+    background: #B5CA00;
+    border-radius: 4px;
+    border: 0px;
+
+    margin-left: 40%;
+    margin-top: 70px;
+    margin-bottom: 82px;
+
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: white;
+}
+
+/*media*/
+/*стили мобильной версии*/
+@media (max-width: 820px) {
+
+    .container {
+        max-width: 320px;
+
+    }
+    /*шапка*/
+    .head__container {
+        display: none;
+    }
+
+    .headmobile__container {
+        display: block;
+        background: url(..//2_cleaningsite/source/header_pic_small.png);
+        background-repeat: no-repeat;
+        height: 520px;
+    }
+
+    .headmobile__main-box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .headmobile__main-logo {
+        margin: 280px 74px 19px 74px;
+    }
+
+    .headmobile__main-btn {
+        width: 295px;
+        height: 60px;
+
+        background: var(--green);
+        border: 1px solid #FFFFFF;
+        box-sizing: border-box;
+        border-radius: 4px;
+
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 21px;
+        color: white;
+
+        margin-left: 12px;
+    }
+
+    .headmobile__main-text-box {
+        display: block;
+        width: 254px;
+        height: 144px;
+        background: white;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+
+        padding: 20px;
+        margin: 32px 14px;
+        
+    }
+
+    .headmobile__main-text-head {
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 19px;
+        color: var(--green);
+    }
+
+    .headmobile__main-text-sub {
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 33px;
+        margin-top: 0px;
+
+        color: #333333;
+    }
+
+    /*мы предлагаем*/
+    .suggest__container{
+        margin-top: 150px;
+    }
+
+    .suggest__sign {
+        display: block;
+        max-width: 230px;
+        margin-left: -20px;
+        text-align: center;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 35px;
+        color: #333333;
+        margin-bottom: 0px;
+    }
+    .suggest__items-box {
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .suggest__items {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        max-width: 200px;
+    }
+
+    .suggest__items-icon {
+        margin-left: 0;
+        margin-top: 60px;
+    }
+
+    .suggest__items-line {
+        margin-left: 50px;
+    }
+
+    /*как стать частью команды*/
+
+    .team__sign {
+        display: block;
+        width: 280px;
+        margin-left: -40px;
+        
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    .team__items {
+        display: block;
+        margin-left: -60px;
+    }
+
+    .team__items-mobilebox {
+        display: flex;
+        align-items: center;
+    }
+
+    .team__items-sign {
+        margin-left: 37px;
+        margin-bottom: 40px;
+    }
+    
+    .team__items-description {
+        max-width: 290px;
+    }
+
+    .team__items-description > br {
+        display: none;
+    }
+   
+    /*анкета*/
+
+    .form__sign-text {
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 47px;
+    }
+
+    .form__sign-box {
+        margin-left: -30px;
+    }
+
+    .form__main-img {
+        display: none;
+    }
+
+    .form__main-form-inputscontainer {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .form__main-form-btn {
+        display: block;
+        margin: 60px auto;
+    }
+
+    .form__main-form-btn-background {
+        margin-top: 0px;
+        display: block;
+        width: 100%;
+        height: 200px;
+        background-color: white;
+        padding: auto;
+    }
+
+    /*вопросы*/
+
+    .faq__sign {
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 35px;
+        text-align: center;
+    }
+    .faq__container{
+        margin-top: 750px;
+        max-width: 250px;
+    }
+
+    .faq__list-term {
+        list-style-type: disc;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 23px;
+    }
+
+    .faq__list {
+        margin-left: -80px;
+    }
+
+    .faq__list-descr {
+        font-style: italic;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        margin-top: 20px;
+    }
+
+    .faq__btn {
+        display: none;
+    }
 }
