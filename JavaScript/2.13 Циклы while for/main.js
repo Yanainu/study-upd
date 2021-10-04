@@ -105,3 +105,17 @@ for (let n = 2; n < x; n++) {
     } 
   }
 }
+
+//пробую исправить
+let x = prompt('введите конец интервала');
+
+for (let n = 2; n < x; n++) {
+
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) {
+      break;
+    } else {
+      console.log(n)
+    } 
+  }
+}
