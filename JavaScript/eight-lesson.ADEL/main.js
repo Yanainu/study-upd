@@ -22,10 +22,10 @@ function checkPalindrom() {
     let word = prompt('Введи слово');
     let indexForStart = 0;
     let indexForEnd = 1;
-    let result;
+    let result = 'Палиндром';
 
     while (indexForStart < (word.length / 2 - 1)) {
-        if ((word[indexForStart] === word[word.length - indexForEnd]) == false) {
+        if (word[indexForStart] !== word[word.length - indexForEnd]) {
             result = false;
             break;
         } else {
@@ -41,3 +41,51 @@ function checkPalindrom() {
         alert('НУ ТЫ И НЕУДАЧНИК');
     }
 }
+
+//update
+
+//let word;
+
+function isPalindrom(word) {
+    let indexForStart = 0;
+    let indexForEnd = 1;
+
+    let result = 'Палиндром';
+
+    while (indexForStart < (word.length / 2 - 1)) {
+        if (word[indexForStart] !== word[word.length - indexForEnd]) {
+            result = 'Не палиндром';
+            break;
+        } else {
+            indexForStart += 1;
+            indexForEnd += 1;
+        }  
+    }
+    alert(result);
+}
+
+//от Адель
+// const testWord = prompt('введите слово');
+
+// function isPalindrom(word) {
+//     let indexForStart = 0;
+//     let indexForEnd = 1;
+
+//     let result = 'Палиндром';
+
+//     while (indexForStart < (word.length / 2 - 1)) {
+//         if (word[indexForStart] !== word[word.length - indexForEnd]) {
+//             result = 'Не палиндром';
+//             break;
+//         } else {
+//             indexForStart += 1;
+//             indexForEnd += 1;
+//         }  
+//     }
+
+//     return result;
+// }
+
+// const answer = isPalindrom(testWord);
+// alert(answer);
+
