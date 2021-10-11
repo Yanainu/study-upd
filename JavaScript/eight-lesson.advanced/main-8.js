@@ -10,7 +10,12 @@ function showAllEnteredNumbers() {
 
     do {
         number = prompt('Введите число');
-        array.push(number);
+        if (number !== '' && number !== null) {
+            array.push(number);
+        } else {
+            continue;
+        }
+        
     } while (number)
     alert(array);
 }
