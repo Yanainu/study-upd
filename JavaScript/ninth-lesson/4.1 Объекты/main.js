@@ -24,6 +24,7 @@ delete user.name;
 // schedule["8:30"] = "get up";
 // alert( isEmpty(schedule) ); // false
 
+//моя версия
 function isEmpty(obj) {
     let result = true; //по умолчанию результат true(объект пустой)
 
@@ -45,7 +46,7 @@ function isEmpty2(obj) {
     }
     return true;
   }
-//мне так хуже читается, с иф понятнее
+//мне так хуже читается, с иф понятнее...
 
 ///////////////// ЗАДАЧА 2
 
@@ -56,7 +57,7 @@ function isEmpty2(obj) {
 // };
 
 // // это будет работать?
-// user.name = "Pete"; - ДА
+// user.name = "Pete"; - ДА это было на уроке
 
 //////////////////////// ЗАДАЧА 3
 
