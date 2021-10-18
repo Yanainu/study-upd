@@ -16,7 +16,7 @@
 const user = {
     name: 'Леви',
     surname: 'Аккерман',
-    dateOfBirth: '1989-09-19',
+    dateOfBirth: '1989-02-19',
     mail: 'captain_levi@mail.ru',
     dog: {
         breed: 'Хаски',
@@ -31,8 +31,9 @@ const user = {
 // - Выводить полное имя пользователя
 
 user.showFullName = function() {
-    alert(`${this.name + ' ' + this.surname}`);
+    alert(`${this.name} ${this.surname}`);
     return this;
+    //alert(`${this.name} + ' ' + ${this.surname}`)
 }
 
 
@@ -48,7 +49,10 @@ user.showFullName = function() {
 //не динамические как я понимаю это вот так
 
 user.showDogInformation = function() {
-    alert(`Порода: ${this.dog.breed}\nЦвет шестки: ${this.dog.color}\nХарактер: ${this.dog.character}\nДата рождения: ${this.dog.dogDateOfBirth}`);
+    alert(`Порода: ${this.dog.breed}
+    Цвет шестки: ${this.dog.color}
+    Характер: ${this.dog.character}
+    Дата рождения: ${this.dog.dogDateOfBirth}`);
     return this;
 }
 
@@ -75,6 +79,12 @@ user.countDaysTillBirthday = function() {
     //округление в меньшую, т.к. тут не учтено нигде время дня и на практике так было бы логичнее
     alert (`До дня рождения пользователя осталось ${resultDays} дней`);
 }
+
+// //вариант 2
+
+// for (let i = 1; i; i += 1) {
+//     let currentDate.getdate()  //перебирать все даты через get date пока не напоремся на др и тогда стоп цикл и вывести дни както 
+// }
 
 // - Сделать 2 функции, первая - создает пользователя с данными, переданными в функцию (без собаки),
 
