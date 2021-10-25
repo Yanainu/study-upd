@@ -10,28 +10,28 @@
 // mul() возвращает произведение введённых свойств.
 // Например:
 
-// let calculator = new Calculator();
-// calculator.read();
+let calculator = new Calculator();
+calculator.read();
 
-// alert( "Sum=" + calculator.sum() );
-// alert( "Mul=" + calculator.mul() );
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
 
-//функция-конструктор:
-// function Calculator() {
+// функция-конструктор:
+function Calculator() {
 
-//   this.read = function () {
-//     this.a = +prompt('a?');
-//     this.b = +prompt('b?');
-//   }
+  this.read = function () {
+    this.a = +prompt('a?');
+    this.b = +prompt('b?');
+  }
 
-//   this.sum = function () {
-//     return this.a + this.b;
-//   }
+  this.sum = function () {
+    return this.a + this.b;
+  }
 
-//   this.mul = function () {
-//     return this.a * this.b;
-//   }
-// }
+  this.mul = function () {
+    return this.a * this.b;
+  }
+}
 
 /////////////////////////////////ЗАДАЧА 3
 // Напишите функцию-конструктор Accumulator(startingValue).
@@ -60,3 +60,5 @@ function Accumulator(statingValue) {
     this.value = this.value += Number(prompt('Сколько нужно добавить?'));
   }
 }
+
+//
