@@ -70,20 +70,39 @@ let b = {
     'pep': 1,
     'ka': 2
 }
-// ПОКА НЕ МОГУ НИЧЕГО ПРИДУМАТЬ ВООБЩЕ (((((((((((((((((((((((((((((((((((((((((((9
 
 function compareEasyObj(obj1, obj2) {
-    let result;
+    let result = true;//по умолчанию пусть они равны
 
-    let strFromObj1 = Object.entries(obj1).join();
-    console.log(strFromObj1)
-    let strFromObj2 = Object.entries(obj2).join();
-    console.log(strFromObj2)
+    //делаем из объектов entries, каждый элемент entries1 должен содержаться в entries2, хоть в каком порядке
+    let entries1 = Object.entries(obj1);
+    let entries2 = Object.entries(obj2);
 
-    if (strFromObj1 === strFromObj2) {
-        result = true;
-    } else {
+    //сначала пусть длина совпадет
+    if (!(entries1.length === entries2.length)) {
+        console.log('длина не совпала')
         result = false;
+    } else {
+    
+        //раз includes с массивами не сработает тут... допустим 
+        //сделать из каждого элемента внутри entries строку, а не подмассив
+
+        let arr1 = entries1.map(item => {
+            return item.join();
+        })
+
+        let arr2 = entries2.map(item => {
+            return item.join();
+        })
+
+        //и теперь через includes проверить что каждый элемент 1го содержится во втором
+
+        arr1.forEach(item => {
+            if(!(arr2.includes(item))) {//если не содержится то false
+                result = false;
+            } 
+        })
+
     }
 
     return result;
