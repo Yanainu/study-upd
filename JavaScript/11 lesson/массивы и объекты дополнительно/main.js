@@ -80,7 +80,6 @@ function compareEasyObj(obj1, obj2) {
 
     //сначала пусть длина совпадет
     if (!(entries1.length === entries2.length)) {
-        console.log('длина не совпала')
         result = false;
     } else {
     
