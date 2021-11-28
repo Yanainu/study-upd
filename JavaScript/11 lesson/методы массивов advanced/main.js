@@ -178,3 +178,36 @@ function includes(array, item, from) {
     return result;
 }
 //     - sort не могу написат пока 
+
+////     - filter ИСПРАВЛЕНО (не было вызова функции func, было просто if(func))
+
+function filter(arr, func) {
+    let resultArr = [];
+    for (i = 0; i < arr.length; i++) {
+        if (func(arr[i])) {//типа если func вернет true для конкретного элемента
+            resultArr.push(arr[i]) //то добавляем элемент в массив-результат
+        }
+    }
+    return resultArr;
+}
+
+//     - find ИСПРАВЛЕНО
+
+function find(arr, func) {
+    for (let i = 0; i < arr.length; i++) {
+        console.log('цикл запустился')
+        if (func(arr[i])) {
+            console.log('условие выполнилос')
+            return arr[i];
+        }
+    }
+}
+
+//для проверок filter & find
+filter([1, 2, 3, 4, 4, 5, 7, 10], (item) => {
+    return item > 4;
+})
+
+find([{name: 'Петя'}, {name: 'Вася'}], (item) => {
+    return item.name === 'Петя';
+})
