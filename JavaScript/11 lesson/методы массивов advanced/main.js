@@ -195,9 +195,7 @@ function filter(arr, func) {
 
 function find(arr, func) {
     for (let i = 0; i < arr.length; i++) {
-        console.log('цикл запустился')
         if (func(arr[i])) {
-            console.log('условие выполнилос')
             return arr[i];
         }
     }
