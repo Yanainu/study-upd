@@ -59,4 +59,3 @@ function compareStrings(str1, str2) {
 
 }
 
-result = arrFromStr1.reduce((sum, item, index) => sum + index, 0);
