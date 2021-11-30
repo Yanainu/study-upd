@@ -1,7 +1,4 @@
 'use strict'
-
-//------------------------------------------------------------------------------- ЗАДАЧА 1
-
 // Напишите функцию camelize(str), которая преобразует 
 // строки вида «my-short-string» в «myShortString».
 
@@ -22,6 +19,22 @@ function camelize(string) {
 
     let stringUpdated = splittedArray.join('');
     console.log(stringUpdated);
+}
+
+//ИСПРАВЛЕНО (другое решение)
+// задача в принципе решена (за исключением того что снова должен быть return а не console.log), 
+// но как можно было бы ее решить используя методы массивов? подсказка - используй split('-'), и метод map
+
+function camelize(string) {
+
+    const splittedArray = string.split('-');
+
+    const resultArray = splittedArray.map(item => {
+        return item[0].toUpperCase() + item.slice(1);
+    })
+
+    const resultString = resultArray.join('');
+    return resultString;
 }
 
 //------------------------------------------------------------------------------- ЗАДАЧА 2
@@ -51,6 +64,16 @@ function filterRange(arr, a, b) {
 let filtered1 = filterRange(arr, 1, 4);
 alert(filtered1); // 3,1 (совпадающие значения)
 alert( arr ); // 5,3,8,1 (без изменений)
+
+//ИСПРАВЛЕНО 
+// все ок, но как бы ты решила задачу с помощью метода filter?
+//РЕШЕНИЕ С ФИЛЬТРОМ
+
+function filterRange (arr, a, b) {
+    filtered = arr.filter(item => item >= a && item <= b)
+    return filtered;
+}
+
 
 //------------------------------------------------------------------------------- ЗАДАЧА 3
 
@@ -294,7 +317,7 @@ function random(min, max) {
 }
 
 
-//нихера не работает
+//работает все
 
 //------------------------------------------------------------------------------- ЗАДАЧА 11
 
@@ -329,14 +352,15 @@ function getAverageAge(arr) {
 
 // Напишите функцию unique(arr), которая возвращает массив, содержащий только уникальные элементы arr.
 
-// Например:
+//ИСПРАВЛЕНО
+//можно использовать вариант проверки if(!uniqueArr.includes(item))
 
 function unique(arr) {
 
     let uniqueArr = [];
     
     arr.forEach((item) => {
-        if (uniqueArr.includes(item) == false) {
+        if (!(uniqueArr.includes(item))) {
             uniqueArr.push(item);
         }
     })

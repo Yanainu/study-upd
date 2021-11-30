@@ -10,7 +10,8 @@ function ucFirst(str) {
     return result;
 }
 
-//////////////////////////////ЗАДАЧА 2
+//-----------------------------------------------------------------------------------------ЗАДАЧА 2
+
 // Напишите функцию checkSpam(str), возвращающую true, 
 //если str содержит 'viagra' или 'XXX', а иначе false.
 
@@ -20,10 +21,16 @@ checkSpam('buy ViAgRA now') == true
 checkSpam('free xxxxx') == true
 checkSpam("innocent rabbit") == false
 
+//ИСПРАВЛЕНО
+//что такое check1 и check2? скинь потом корректное решение
+
 function checkSpam(str) {
     str = str.toLocaleLowerCase();
 
-    if (str.includes(check1.toLocaleLowerCase()) || str.includes(check2.toLocaleLowerCase())) {
+    let check1 = 'viagra';
+    let check2 = 'xxx';
+
+    if (str.includes(check1) || str.includes(check2)) {
         return true;
     } else {
         return false;
@@ -32,7 +39,8 @@ function checkSpam(str) {
 
 
 
-//////////////////////////////ЗАДАЧА 3
+//-----------------------------------------------------------------------------------------ЗАДАЧА 3
+
 // Создайте функцию truncate(str, maxlength), которая проверяет длину строки str и, 
 // если она превосходит maxlength, заменяет конец str на "…", так, 
 // чтобы её длина стала равна maxlength.
@@ -46,16 +54,18 @@ truncate("Вот, что мне хотелось бы сказать на эту
 
 truncate("Всем привет!", 20) = "Всем привет!"
 
+// //ИСПРАВЛЕНО:
+// должен быть return, не console.log
+// else тут не нужен, если внутри if будет return
+
 function truncate(sentence, maxlengh) {
     if (sentence.length > maxlength) {
         const sentenceCropped = sentence.slice(0, maxlength - 1) + '...';
-        console.log(sentenceCropped);
-    } else {
-        console.log(sentence);
-    }
+        return sentenceCropped;
+    } 
+
+    return sentence;
 }
-
-
 
 //////////////////////////////ЗАДАЧА 4
 // Есть стоимость в виде строки "$120". То есть сначала идёт знак валюты, а затем – число.
