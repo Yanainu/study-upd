@@ -21,19 +21,26 @@ function createArray(lenght, item) {
 
 // - запилить функцию, которая сравнивает 2 массива, и возвращает true если они одинаковые, и false если нет
 
+//ИСПРАВЛЕНО используй всегда строгое сравнение
+//кое-где есть ошибка, compareArrays([1, 2, 3], [1, 2, 4]) вернет true
+//ошибка была в том, что я сначала прерывала цикл а потом делала result = false. теперь наоборот
+
 function compareArrays(arr1, arr2) {
     let result = true;
     //можно сразу чекнуть одна ли у них длина, тогда в цикле будет пофиг на длину какого массива я ориентирую i
-    if (arr1.length != arr2.length) {
+    if (!(arr1.length === arr2.length)) {
         result = false;
     }
 
-    for (let i = 0; i < arr1.lenght; i++) {
-        if (array1[i] === array2[i]) {
+    for (let i = 0; i < arr1.length; i += 1) {
+
+        if (arr1[i] === arr2[i]) {
             continue;
+
         } else {
-            break; 
             result = false;
+            break; 
+            
         }
     }
 
@@ -45,12 +52,18 @@ const arr1 = ['lol', 'kek', 'cheburek'];
 const arr2 = ['lol', 'kek', 'cheburek'];
 const arr3 = ['eren', 'yeaga'];
 
+compareArrays([1, 2, 3], [1, 2, 4])
+
 //----------------------------------------------------------------------------------------------------------
 // - написать функцию, которая проверяет является ли переданное значение объектом, 
 // при решении проверьте со всеми возможными типами - массив/null и прочее, возвращать true функция должна только для объектов
 
+//ИСПРАВЛЕНО 
+// если у тебя где-то булевый результат, то пиши вместо Array.isArray(x) == false просто Array.isArray(x) (молчу что тут снова не строгое сравнение)
+// написала с ! т.к. мне же надо false а не true
+
 function isObject(x) {
-    if (typeof(x) === 'object' && Array.isArray(x) == false && x != null) {
+    if (typeof(x) === 'object' && !(Array.isArray(x)) && x != null) {
         return true;
     } else {
         return false;
@@ -91,45 +104,62 @@ function makeArrayFromObject(obj) {
 
 //----------------------------------------------------------------------------------------------------------
 
+//-----------------------------------------------------------------------------------------------------
+
 // - реализовать функцию, которая сравнивает 2 объекта без вложенных конструкций
 
+
+// решение не подходит, что если я хочу сравнить
+let a = {
+    'ka': 2,
+    'pep': 1
+}
+
+let b = {
+    'pep': 1,
+    'ka': 2
+}
+
+//ИСПРАВЛЕННОЕ РЕШЕНИЕ
+
 function compareEasyObj(obj1, obj2) {
-    let result;
+    let result = true;//по умолчанию пусть они равны
 
-    let strFromObj1 = Object.entries(obj1).join();
-    let strFromObj2 = Object.entries(obj2).join();
+    //делаем из объектов entries, каждый элемент entries1 должен содержаться в entries2, хоть в каком порядке
+    let entries1 = Object.entries(obj1);
+    let entries2 = Object.entries(obj2);
 
-    if (strFromObj1 === strFromObj2) {
-        result = true;
-    } else {
+    //сначала пусть длина совпадет
+    if (!(entries1.length === entries2.length)) {
         result = false;
+    } else {
+    
+        //раз includes с массивами не сработает тут... допустим 
+        //сделать из каждого элемента внутри entries строку, а не подмассив
+
+        let arr1 = entries1.map(item => {
+            return item.join();
+        })
+
+        let arr2 = entries2.map(item => {
+            return item.join();
+        })
+
+        //и теперь через includes проверить что каждый элемент 1го содержится во втором
+
+        arr1.forEach(item => {
+            if(!(arr2.includes(item))) {//если не содержится то false
+                result = false;
+            } 
+        })
+
     }
 
     return result;
 }
 
-//объекты для проверок
-const obj1 = {
-    name: 'Levi',
-    age: 30,
-}
-
-const obj2 = {
-    name: 'Levi',
-    age: 30,
-}
-
-const obj3 = {
-    name: 'Levi',
-    age: 30,
-    height: 160,
-}
-
-const obj4 = {
-    name: 'Erwin',
-}
-
 //----------------------------------------------------------------------------------------------------------
+//ТЫ ПИСАЛ РАЗОБРАТЬ НА ЗАНЯТИИ
 
 // - реализовать функцию, которая сравнивает 2 обхъекта, в котором могут быть вложенные массивы/объекты
 
