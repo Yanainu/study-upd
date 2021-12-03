@@ -38,8 +38,8 @@ room.occupiedBy = meetup;
 meetup.self = meetup;
 
 alert( JSON.stringify(meetup, function replacer(key, value) {
-  /* ваш код *///НЕ РАБОТАЮЩИЙ 
-  if (value === room) {
+  /* ваш код */
+  if (key && value == meetup) {
     return undefined;
   } else {
     return value
