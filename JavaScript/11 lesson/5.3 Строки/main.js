@@ -26,9 +26,8 @@ checkSpam("innocent rabbit") == false
 
 function checkSpam(str) {
     str = str.toLocaleLowerCase();
-
-    let check1 = 'viagra';
-    let check2 = 'xxx';
+    let check1 = 'xxx';
+    let check2 = 'viagra';
 
     if (str.includes(check1) || str.includes(check2)) {
         return true;
