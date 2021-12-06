@@ -39,23 +39,19 @@
 let str1 = 'abacaba';
 let str2 = 'xhxixhx';
 
-function compareStrings(str1, str2) {
+function compare4Strings(str1, str2) {
+  let result = false;
+  //можно сразу сравнить длину
+  if (!(str1.length === str2.length)) { 
+    return result;
+  }
+
   //допустим, я сделаю из строки массив и через какойнибудь метод выведу индексы a
   let arrFromStr1 = str1.split('');
   let arrFromStr2 = str2.split('');
 
-  let indexes;
+  let indexes = {};
 
-  //находим сумму всех индексов a через редюс
-  for (let i = 0; i < arrFromStr1.length; i++) {
-    indexes = arrFromStr1.reduce((sum, item, index) => {
-      if (item === arrFromStr1[i]) {
-        sum + index;
-      }
-    }, 0)
-  }
-  console.log(indexes)
-
-
+  //нужна проверка что а всегда соответствует х
 }
 
