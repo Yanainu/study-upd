@@ -86,8 +86,7 @@ const obj = {
 //вариант 1 
 
 function makeArrayFromObject(obj) {
-    const res = Object.entries(obj);
-    return res;
+    return Object.entries(obj);
 }
 
 
