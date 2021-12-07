@@ -34,24 +34,50 @@
 // ответ Нет
 
 //----------------------------РЕШЕНИЕ
+//проблема -> compare('aba', 'xxx'); вернет true, нужно допилить текущее решение:
 
+const str1 = 'abacaba';
+const str2 = 'xhxixhx';//true
 
-let str1 = 'abacaba';
-let str2 = 'xhxixhx';
+const str3 = 'aba';
+const str4 = 'xxx';//false
 
-function compare4Strings(str1, str2) {
-  let result = false;
-  //можно сразу сравнить длину
-  if (!(str1.length === str2.length)) { 
-    return result;
+const str5 = 'abaxaba';
+const str6 = 'zuzbzuz';//true
+
+const str7 = 'tururu';
+const str8 = 'wikiha';//false
+
+function compareStrings (str1, str2) {
+  if (str1.length !== str2.length) return false;
+
+  const obj = {};
+
+  for (let i = 0; i < str1.length; i += 1) {  
+      const key = str1[i];
+      const value = str2[i];
+      
+      if (key in obj) {
+          
+          if (obj[key] !== value) {//если значение по ключу а не равно х
+              return false;
+          }
+      } else {
+          //доп условие если i-й ключ еще не содержится в объекте 
+          //то и его значение должно еще не содержаться в нем
+          //тогда сразу false
+          
+          if (Object.values(obj).includes(str2[i])) {
+            return false;
+          } else {//если значение и ключ оба не содержатся - тогда уже добавляем
+            obj[key] = value;
+          }
+          
+      }
   }
-
-  //допустим, я сделаю из строки массив и через какойнибудь метод выведу индексы a
-  let arrFromStr1 = str1.split('');
-  let arrFromStr2 = str2.split('');
-
-  let indexes = {};
-
-  //нужна проверка что а всегда соответствует х
+  console.log(obj)
+  return true;
 }
+
+
 

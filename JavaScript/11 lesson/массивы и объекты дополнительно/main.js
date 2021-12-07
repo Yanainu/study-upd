@@ -50,7 +50,7 @@ const arr3 = ['eren', 'yeaga'];
 // при решении проверьте со всеми возможными типами - массив/null и прочее, возвращать true функция должна только для объектов
 
 function isObject(x) {
-    if (typeof(x) === 'object' && Array.isArray(x) == false && x != null) {
+    if (typeof x === 'object' && Array.isArray(x) === false && x != null) {
         return true;
     } else {
         return false;
@@ -73,8 +73,7 @@ const obj = {
 //вариант 1 
 
 function makeArrayFromObject(obj) {
-    const res = Object.entries(obj);
-    return res;
+    return Object.entries(obj);
 }
 
 
