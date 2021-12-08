@@ -99,29 +99,44 @@ setTimeout( () => f(4), 1100); // выполняется
 setTimeout( () => f(5), 1500); // проигнорирован (прошло только 400 мс от последнего вызова)
 
 function debounce(func, time) {
-  //код с проверкой условия вызова
-  let callThisTime = new Date();//время нынешнего вызова функции
-  console.log(`callThisTime = ${callThisTime}`)
-  let callLastTime; //время прошлого вызова функции
-  let difference = callThisTime - callLastTime;
-  console.log(`difference = ${difference}`)
+  let canCallFunc;
 
-    console.log(`callastTime = ${callLastTime} `)
-    if (difference < time) {//если промежуток меньше чем заявленный time-отменяем вызов
-      clearTimeout(timerId);
-      console.log(`РАНО!`);
-    } 
+  setTimeout(() => {
+    console.log('settimeout сработал')
+    canCallFunc = true;
+    
+  }, time)
+
+  if (canCallFunc) {
+    return func();
+  }
+}
+
+debounce(alert, 5000)
+
+function debounce(func, time) {
+  let canCallFunc = true;
+  func();
   
-    //вызов через нулевой settimeout, чтобы это происходило после выполнения условия выше и я могла его отменить 
-    let timerId = setTimeout(() => {
-      callLastTime = new Date()//это время этого вызова, которое для следующего вызова будет временем прошлого вызова
-      console.log(`callLastTime = ${callLastTime}`)
-      return func();
-    }, 0);//settimeout с нулем - функция вызовется только после выполнения предыдущего кода, где условие
+  return function() {
+    return func();
+  }
+  
+  canCallFunc = false;
+
+  return function() {
+
+    setTimeout(() => {
+      canCallFunc = true;
+    }, time)
+    
+    if (canCallFunc) {
+      func();
+    } 
+
+    canCallFunc = false;
+    
+  }
 }
 
-//для проверки без алертов
-function func() {
-  console.log('функция выполнена')
-}
-debounce(func, 10000)
+debounce(alert, 5000)
