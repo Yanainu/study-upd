@@ -226,8 +226,7 @@ printList(list)// 1, 2, 3, 4
 
 // Сделайте два решения: с использованием цикла и через рекурсию.
 
-//РЕШЕНИЕ с рекурсией НЕ СДЕЛАНО
-
+//РЕШЕНИЕ с рекурсией 
 let list = {
     value: 1,
     next: {
@@ -244,23 +243,19 @@ let list = {
 
 
 function printListReverse(list) {
-    //там была конечная точка рекурсии это next=null, 
-    //а здесь получается конечная точка это первый уровень где value=1
-    //если следующий уровень есть - то проходим на него без вывода value
+
     if (list.next) {
-        return printListReverse(list.next);
+      printListReverse(list.next);
+      console.log(list.value)
     } else {//дошли до последнего - вывели value
-        console.log(list.value)
+      console.log(list.value)
     }
-    //и вот дальше я должна выводить предыдущие уровни, но я не понимаю как к ним обратиться
+
 }
 printListReverse(list)
 
 
-//РЕШЕНИЕ без рекурсии НЕ СДЕЛАНО
-//в прошлой задаче мы делали вывод value потом шли на следующий уровень
-//тут надо сначала пройти на последний уровень, там вывести value потом подниматься на предыдущие
-//КАК Я МОГУ ОБРАЩАТЬСЯ К ПРЕДЫДУЩИМ УРОВНЯМ
+//РЕШЕНИЕ без рекурсии 
 
 let list = {
     value: 1,
@@ -277,14 +272,17 @@ let list = {
   };
 
 function printListReverse(list) {
-    //проходим на последний уровень 
-    while(list.next) {
-        list = list.next;
+    let values = [];
+    while(list.next) {//спускаемся по уровням до последнего, сохраняя value
+      values.push(list.value);
+      list = list.next;
     }
-    //выводим value с последнего уровня
-    console.log(list.value);
-    //теперь надо подняться на предыдущий уровень а я не понимаю как
-    list
+    
+    console.log(list.value);//выводим последний уровень 
+
+    for (let i = 2; i >= 0; i -= 1) {//выводим предыдущие value в обратном порядке
+      console.log(values[i])
+    }
 
 }
 
