@@ -99,44 +99,41 @@ setTimeout( () => f(4), 1100); // выполняется
 setTimeout( () => f(5), 1500); // проигнорирован (прошло только 400 мс от последнего вызова)
 
 function debounce(func, time) {
-  let canCallFunc;
+  let canCallFunc = true;
 
-  setTimeout(() => {
-    console.log('settimeout сработал')
-    canCallFunc = true;
-    
-  }, time)
+  return function() {
+    if (canCallFunc) {
 
-  if (canCallFunc) {
-    return func();
+      setTimeout(() => {
+        canCallFunc = true;
+      }, time)
+  
+      return func();
+    }
+    canCallFunc = false;
   }
+  
 }
 
-debounce(alert, 5000)
+let f = debounce(alert, 5000);
 
 function debounce(func, time) {
   let canCallFunc = true;
-  func();
   
-  return function() {
-    return func();
-  }
-  
-  canCallFunc = false;
-
-  return function() {
-
-    setTimeout(() => {
-      canCallFunc = true;
-    }, time)
-    
+  return function(...args) {
     if (canCallFunc) {
-      func();
-    } 
+      setTimeout(() => {
+        canCallFunc = true;
+      }, time)
 
-    canCallFunc = false;
-    
-  }
+      canCallFunc = false;
+      return func(...args);
+    }
+
+  } 
 }
 
-debounce(alert, 5000)
+let f = debounce(alert, 5000);
+f()
+
+//-----------------------------------------------------------------------------------------------ЗАДАЧА 4
