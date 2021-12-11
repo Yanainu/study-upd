@@ -23,10 +23,10 @@ Rabbit.prototype = {
 
 let rabbit = new Rabbit();
 
-Rabbit.prototype = {};//вот эту
+Rabbit.prototype = {};//ДОБАВЛЕННАЯ СТРОЧКА
 
 alert( rabbit.eats ); // покажет undefided т.к. мы обнулили Rabbit.prototype и eats там больше нет
-//НЕПРАВИЛЬНО, я не уловила,что изменение Rabbit.prototype не повлияет на уже созданный по нему объект, а повлияет только на новые. ок
+//НЕПРАВИЛЬНО, я не понимала,что изменение Rabbit.prototype не повлияет на уже созданный по нему объект, а повлияет только на новые. ок
 
 //------------------------------
 // …А если код такой (заменили одну строчку)?
@@ -38,10 +38,10 @@ Rabbit.prototype = {
 
 let rabbit = new Rabbit();
 
-Rabbit.prototype.eats = false;//вот это замененная
+Rabbit.prototype.eats = false;///ДОБАВЛЕННАЯ СТРОЧКА
 
 alert( rabbit.eats ); // false, т.к. ссылается на измененный Rabbit.prototype.eats = false
-//тут правильно. тогда ПОЧЕМУ В ПРЕДЫДУЩЕМ ПРИМЕРЕ НЕ ТАК РАБОТАЕТ
+//тут правильно. тогда ПОЧЕМУ В ПРЕДЫДУЩЕМ ПРИМЕРЕ НЕ ТАК РАБОТАЕТ?????????????????????????????????????????????????
 
 //----------------------------
 // Или такой (заменили одну строчку)?
@@ -53,7 +53,7 @@ Rabbit.prototype = {
 
 let rabbit = new Rabbit();
 
-delete rabbit.eats;//вот замененная
+delete rabbit.eats;//ДОБАВЛЕННАЯ СТРОЧКА
 
 alert( rabbit.eats ); // true, он не найдет eats в rabbit и пойдет смотреть Rabbit - там eats: true;
 //славааллаху правильно
