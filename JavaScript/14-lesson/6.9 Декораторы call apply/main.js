@@ -99,29 +99,72 @@ setTimeout( () => f(4), 1100); // выполняется
 setTimeout( () => f(5), 1500); // проигнорирован (прошло только 400 мс от последнего вызова)
 
 function debounce(func, time) {
-  //код с проверкой условия вызова
-  let callThisTime = new Date();//время нынешнего вызова функции
-  console.log(`callThisTime = ${callThisTime}`)
-  let callLastTime; //время прошлого вызова функции
-  let difference = callThisTime - callLastTime;
-  console.log(`difference = ${difference}`)
-
-    console.log(`callastTime = ${callLastTime} `)
-    if (difference < time) {//если промежуток меньше чем заявленный time-отменяем вызов
-      clearTimeout(timerId);
-      console.log(`РАНО!`);
-    } 
+  let canCallFunc = true;
   
-    //вызов через нулевой settimeout, чтобы это происходило после выполнения условия выше и я могла его отменить 
-    let timerId = setTimeout(() => {
-      callLastTime = new Date()//это время этого вызова, которое для следующего вызова будет временем прошлого вызова
-      console.log(`callLastTime = ${callLastTime}`)
-      return func();
-    }, 0);//settimeout с нулем - функция вызовется только после выполнения предыдущего кода, где условие
+  return function(...args) {
+    if (canCallFunc) {
+      setTimeout(() => {
+        canCallFunc = true;
+      }, time)
+
+      canCallFunc = false;
+      return func(...args);
+    }
+
+  } 
 }
 
-//для проверки без алертов
-function func() {
-  console.log('функция выполнена')
+let f = debounce(alert, 5000);
+f()
+
+//-----------------------------------------------------------------------------------------------ЗАДАЧА 4
+//ТОРМОЗЯЩИЙ ДЕКОРАТОР
+
+// Создайте «тормозящий» декоратор throttle(f, ms), который возвращает обёртку, передавая вызов в f не более одного раза в ms миллисекунд. 
+// Те вызовы, которые попадают в период «торможения», игнорируются.
+
+// Отличие от debounce – если проигнорированный вызов является последним во время «задержки», то он выполняется в конце.
+
+// Пример кода:
+
+function f(a) {
+  console.log(a)
 }
-debounce(func, 10000)
+
+// f1000 передаёт вызовы f максимум раз в 1000 мс
+let f1000 = throttle(f, 1000);
+
+f1000(1); // показывает 1
+f1000(2); // (ограничение, 1000 мс ещё нет)
+f1000(3); // (ограничение, 1000 мс ещё нет)
+
+// когда 1000 мс истекли ...
+// ...выводим 3, промежуточное значение 2 было проигнорировано
+// P.S. Аргументы и контекст this, переданные в f1000, должны быть переданы в оригинальную f.
+
+//РЕШЕНИЕ ВСЕ ЕЩЕ ОТСУТСТВУЙЕТ
+
+
+function throttle(func, time) {
+  let canCallFunc = true;//первый вызов также тру
+  
+  return function(...args) {
+    //если тру - вызываем сразу начинаем считать время до следующего вызова, в течение этого времени будет false
+    if (canCallFunc) {
+      return func(...args);
+    }
+
+    if (canCallFunc) {
+      setTimeout(() => {
+        canCallFunc = true;
+      }, time)
+
+      canCallFunc = false;
+      return func(...args);
+    }
+
+  } 
+}
+
+let f = debounce(alert, 5000);
+f()
