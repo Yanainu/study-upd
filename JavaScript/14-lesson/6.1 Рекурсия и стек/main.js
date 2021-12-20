@@ -228,28 +228,29 @@ printList(list)// 1, 2, 3, 4
 
 //РЕШЕНИЕ с рекурсией 
 let list = {
-    value: 1,
+  value: 1,
+  next: {
+    value: 2,
     next: {
-      value: 2,
+      value: 3,
       next: {
-        value: 3,
-        next: {
-          value: 4,
-          next: null
-        }
+        value: 4,
+        next: null
       }
     }
-  };
+  }
+};
 
 
 function printListReverse(list) {
 
-    if (list.next) {
-      printListReverse(list.next);
-      console.log(list.value)
-    } else {//дошли до последнего - вывели value
-      console.log(list.value)
-    }
+
+  if (list.next) {
+    printListReverse(list.next);
+    console.log(list.value)
+  } else {//дошли до последнего - вывели value
+    console.log(list.value)
+  }
 
 }
 printListReverse(list)
@@ -258,31 +259,31 @@ printListReverse(list)
 //РЕШЕНИЕ без рекурсии 
 
 let list = {
-    value: 1,
+  value: 1,
+  next: {
+    value: 2,
     next: {
-      value: 2,
+      value: 3,
       next: {
-        value: 3,
-        next: {
-          value: 4,
-          next: null
-        }
+        value: 4,
+        next: null
       }
     }
-  };
+  }
+};
 
 function printListReverse(list) {
-    let values = [];
-    while(list.next) {//спускаемся по уровням до последнего, сохраняя value
-      values.push(list.value);
-      list = list.next;
-    }
-    
-    console.log(list.value);//выводим последний уровень 
+  let values = [];
+  while(list.next) {//спускаемся по уровням до последнего, сохраняя value
+    values.push(list.value);
+    list = list.next;
+  }
+  
+  console.log(list.value);//выводим последний уровень 
 
-    for (let i = 2; i >= 0; i -= 1) {//выводим предыдущие value в обратном порядке
-      console.log(values[i])
-    }
+  for (let i = 2; i >= 0; i -= 1) {//выводим предыдущие value в обратном порядке
+    console.log(values[i])
+  }
 
 }
 
