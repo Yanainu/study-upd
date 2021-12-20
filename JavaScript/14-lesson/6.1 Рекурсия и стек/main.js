@@ -244,6 +244,7 @@ let list = {
 
 function printListReverse(list) {
 
+
   if (list.next) {
     printListReverse(list.next);
     console.log(list.value)
