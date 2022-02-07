@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+  <style>
+    p {
+        margin: 0;
+      }
+    
+    .hours {
+      color: red;
+    }
+    .minutes {
+      color: green;
+    }
+    .seconds {
+      color: blue;
+    }
+  </style>
+
+  <!-- клик по этой кнопке вызовет clockStart() -->
+  <input type="button" onclick="clockStart()" value="Старт">
+
+  <!-- клик по этой кнопке вызовет clockStop() -->
+  <input type="button" onclick="clockStop()" value="Стоп">
+
+  <script>
+    //мне казалось что надо через класс, но не работает, работает через функции
+
+    function clockStart() {
+      //создаем место для строчки с часами
+      let p = document.createElement('p');
+      document.body.prepend(p);
+
+      //сами часы, которые будут вызываться раз в секунду
+      function displayTime() {
+        //находим текущее время
+        let current = new Date();
+
+        let hours = current.getHours();
+        if (hours<10) hours = `0${hours}`;
+
+        let minutes = current.getMinutes();
+        if (minutes<10) minutes = `0${minutes}`;
+
+        let seconds = current.getSeconds();
+        if (seconds<10) seconds = `0${seconds}`;
+
+        //суем это время в строку, созданную выше
+        p.innerHTML = `<span class="hours">${hours}</span>:<span class="minutes">${minutes}</span>:<span class="seconds">${seconds}</span>`;
+      }
+
+      setInterval(displayTime,1000)//вызываем это раз в секунду
+    }
+
+    function clockStop() {
+      let p = document.querySelector('p');
+      p.remove();
+    }
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <div data-widget-name="menu">Choose the genre</div>
+
+  <script>
+    /* your code */
+    // Напишите код для выбора элемента с атрибутом data-widget-name из документа и прочитайте его значение.
+
+    for (let elem of document.body.children) {
+      if (elem.hasAttribute('data-widget-name')) {
+        alert(`элемент найден - ${elem.tagName}, значение атрибута - ${elem.getAttribute('data-widget-name')}`)
+      }
+    }
+    
+    //как сделал учебник, ЕСТЕСТВЕННО ПО-ДРУГОМУ НУ КОНЕЧНОЖЕ мне честно мое больше нравится
+    // получаем элемент
+    let elem = document.querySelector('[data-widget-name]');// а если у нас он такой не один! тут будет только первый найденный же
+
+    // читаем значение
+   // alert(elem.dataset.widgetName);
+    // или так
+   // alert(elem.getAttribute('data-widget-name'));
+  </script>
+</body>
+</html>
+
