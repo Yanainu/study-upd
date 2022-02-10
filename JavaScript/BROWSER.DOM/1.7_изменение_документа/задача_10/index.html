@@ -30,7 +30,35 @@
 
   <script>
     // ... ваш код ...
-    //я могу создать из имен массив и потом его сортировать... а как тогда остальные столбики подтянутся...
+    function sortByName() {
+      let table = document.getElementById('table');
+      //можно присвоить классы, чтобы был доступ к нужным ячейкам
+
+      //обозначаю столбцы
+      let rows = document.querySelectorAll('tr');
+      for (let i = 0; i < 4; i += 1) {
+        rows[i].className = `row-${i}`; 
+      }
+
+      // //обозначаю ячейки с именами
+      // for (let i = 1; i <= 3; i += 1) {
+      //   let currentRow = document.querySelector(`.row-${i}`);
+      //   console.log(currentRow)
+      //   let currentCells = currentRow.children; 
+      //   console.log(currentCells)
+      //   for (let cell of currentCells) {
+      //     cell.className = `td-${i}`;
+      //   }
+      // }
+
+      //чтобы имена строк были взаимосвязаны их же можно и одинаково обозвать, чтобы при сортировке ехала вся строчка
+      let row1 = document.querySelector('.row-1');
+      let cells1 = row1.children;
+      for (let i = 1; i <= 3; i += 1) {
+        cells1[i].className = `td-1`;
+      }
+    }
+    
   </script>
 
 </body>
