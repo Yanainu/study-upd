@@ -36,78 +36,79 @@
       // Например, createCalendar(cal, 2012, 9) сгенерирует в cal следующий календарь(картинка в учебнике)
 
     function createCalendar(elem, year, month) {
-      // создать обьект даты с нужным месяцем нужного года, через new Date // получить там кол-во дней
-      const date1 = new Date(`${year}-${month}-01`)//
-      const date2 = new Date(`${year}-${month+1}-01`)//и 1е число следующего месяца
+      let calendar = document.getElementById('calendar');
+      let table = document.createElement('table');
 
-      const days = Math.floor((date2 - date1)/(1000*60*60*24));//30 дней
-      //нет же метода вычислить количество дней в месяце, только разницей между датами вроде можно
+      let daysOfWeek = ['пн','вт','ср','чт','пт','сб','вс'];
+
+      //запись с сентябрем просто для закрепления
+      // let date = new Date(2012, 09)//тут октябрь
+      // date.setDate(0);//тут последний день сентября
+      // let daysCount = date.getDate();//итого дней в сентябре
+
+      //универсальный вариант не только для сентября
+      let date = new Date(year, month)//месяц, следующий за нужным
+      date.setDate(0);//последний день нужного месяца
+      let daysCount = date.getDate();//итого дней в нужном месяце
+      console.log(daysCount)
+
+      let weeksCount = Math.ceil(daysCount/7);//кол-во строк без названий дней недели
+
+      //создание строки с днями недели
+      let firstRow = document.createElement('tr');
+      table.append(firstRow);
+
+      for (item of daysOfWeek) {
+        let th = document.createElement('th');
+        th.textContent = item;
+        firstRow.append(th);
+      }
       
-      //вычислить кол-во недель из дней
-      const weeks = Math.ceil(days/7) + 1;//+1 для названия дней недели строка
+      //ВНЕ ЦИКЛОВ я хочу день отсчета получить и счетчик 1-30
 
-      //создаю таблицу
-      const table = document.createElement('table');
-      elem.append(table);
-      
-      // 2 цикла, первый отрисовывает tr, их будет столько, сколько недель в этом месяце + шапка с названиями дней недели
-      // - второй цикл внутри первого отрисовывает td, их будет 7 каждый раз фиксированно
+      let thisDay = new Date(date.setDate(1));// 1 первое блядское сентября получили(i ноль а нам нужно с первого дня поэтому i+1)
+      let thisDayOfWeek = thisDay.getDay();//получили 6 суббота
 
+      let counter = 1;
 
+      //ИЗ-ЗА ФЕВРАЛЯ В КОТОРОМ 28 ДНЕЙ  и это 4 недели ровно
+      if (daysCount/7 === 4 && thisDayOfWeek != 1) {
+        weeksCount = 5;
+      }
 
+      // создание строк в таблице
+      for (let i = 0; i < weeksCount; i += 1) {
+        let tr = document.createElement('tr');
+        
+        //создание td внутри строки
+        for (let i = 0; i < 7; i += 1) {
+          let td = document.createElement('td');
+          td.className = i+1;//опознавательный знак для определения дня недели if
+          // 1 2 3 4 5 6 7 
+          
+          //заполнение ячейки дня недели 
+          if (td.className == thisDayOfWeek) {//если ячейка 6 и день недели 6 то заполняем
+            td.textContent = counter;//день от 1 до 30
+            counter += 1;//увеличиваем для следующей итерации28
+            thisDayOfWeek += 1;//тоже для след итерации8
+          } 
+          tr.append(td);
+
+          //если числа месяца кончились то ячейка остается пустой
+          if (counter > daysCount) {
+            td.textContent = '';
+          }
+        }
+        
+        table.append(tr);
+        //после заполнения строки меняем день недели на понедельник для новой строки
+        thisDayOfWeek = 1;
+      }
+      calendar.append(table);
     }
 
-    createCalendar(calendar, 2012, 9);
+    createCalendar(calendar, 2022, 02);
   </script>
 
 </body>
 </html>
-
-
-
-//создание таблицы, будет душно
-
-//строка с днями недели
-
-
-//заполнение дней недели
-const daysOfWeek = ['ПН', 'ВТ','СР','ЧТ','ПТ','СБ','ВС'];
-
-for (let i = 1; i <= 38; i +=1) {
-  //создание строк tr
-  if (i === 1 || i === 8 || i === 15 || i === 22 || i === 29) {//если начало новой строки
-    let tr = document.createElement('tr');//создаем строку
-    table.append(tr);
-    tr.id = `${i}row`;
-  }
-
-  //заполнение первой строки днями недели
-  if (1 <= i <= 7) {
-    let td = document.createElement('td'); 
-    let firstRow = document.getElementById('1row')
-    firstRow.append(td);
-    td.textContent = daysOfWeek[i-1]
-  } 
-
-  //заполнение остальных строк ячейками
-  if (i > 7) {
-    let td = document.createElement('td'); 
-    let thisRow = document.getElementById(`${i}row`)
-    thisRow.append(td);
-    td.textContent = i;
-    td.id = i;
-  }
-}
-
-//даты
-const date1 = new Date(`${year}-${month}-01`)//
-const date2 = new Date(`${year}-${month+1}-01`)//и 1е число следующего месяца
-
-const days = Math.floor((date2 - date1)/(1000*60*60*24));//30 дней
-
-let firstDay = date1.getDay();//получили первый день недели цифрой(в примере это 6, суббота)
-
-//я пыталась создавать ячейки сразу при заполнении но не получилось, попробую по строчкам заполнять
-
-//заполнение
-let firstCell = document.getElementById(`1-${firstDay}`);
