@@ -47,10 +47,11 @@
     // ... ваш код ...
     
     let items = document.querySelectorAll('li');
+
     for (let item of items) {
-      let children = item.querySelectorAll('li').length
-      if (children != 0) {
-        item.firstChild.textContent = `${item.firstChild.textContent} [${children}]`
+      let childrenCount = item.querySelectorAll('li').length
+      if (childrenCount != 0) {
+        item.firstChild.textContent = `${item.firstChild.textContent} [${childrenCount}]`
       }
       
     }

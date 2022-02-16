@@ -65,10 +65,11 @@
       for (key in data) {
         //создаем li
         li = document.createElement('li');
+        li.innerHTML = key;
         ul.append(li);
-        ul.lastElementChild.innerHTML = key;
-        console.log(Object.keys(data[key]))
-        //вызываем эту же функцию для 2 уровня, т.е. для value, при условии что в value тоже объект лежит и непустой господи как это проверить 
+
+        //вызываем эту же функцию для 2 уровня, т.е. для value, 
+        //при условии что в value тоже объект лежит и он не пустой 
         if(Object.keys(data[key])){
           createTree(li, data[key])
         }

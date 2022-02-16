@@ -25,8 +25,13 @@
         do {
             listItem = prompt('Введите содержимое пункта');
             let li = document.createElement('li');
-            ul.append(li);
-            ul.lastElementChild.textContent = listItem;
+            li.textContent = listItem;
+            if (listItem) {
+                ul.append(li);
+            } else {
+                break;
+            }
+            
         } while (listItem)
 
     </script>

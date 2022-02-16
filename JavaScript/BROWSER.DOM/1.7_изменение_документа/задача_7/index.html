@@ -41,73 +41,73 @@
 
       let daysOfWeek = ['пн','вт','ср','чт','пт','сб','вс'];
 
-      //запись с сентябрем просто для закрепления
-      // let date = new Date(2012, 09)//тут октябрь
-      // date.setDate(0);//тут последний день сентября
-      // let daysCount = date.getDate();//итого дней в сентябре
-
-      //универсальный вариант не только для сентября
+      //высчитываем кол-во дней в месяце
       let date = new Date(year, month)//месяц, следующий за нужным
       date.setDate(0);//последний день нужного месяца
       let daysCount = date.getDate();//итого дней в нужном месяце
-      console.log(daysCount)
 
+      //и кол-во недель
       let weeksCount = Math.ceil(daysCount/7);//кол-во строк без названий дней недели
 
       //создание строки с днями недели
       let firstRow = document.createElement('tr');
-      table.append(firstRow);
-
+      
       for (item of daysOfWeek) {
         let th = document.createElement('th');
         th.textContent = item;
         firstRow.append(th);
       }
-      
-      //ВНЕ ЦИКЛОВ я хочу день отсчета получить и счетчик 1-30
 
-      let thisDay = new Date(date.setDate(1));// 1 первое блядское сентября получили(i ноль а нам нужно с первого дня поэтому i+1)
-      let thisDayOfWeek = thisDay.getDay();//получили 6 суббота
+      table.append(firstRow);
 
-      let counter = 1;
+      //день отсчета(день недели 1го дня месяца) и счетчик дней от 1 до 30
 
-      //ИЗ-ЗА ФЕВРАЛЯ В КОТОРОМ 28 ДНЕЙ  и это 4 недели ровно
+      let thisDay = new Date(date.setDate(1));//первый день нашего месяца
+      let thisDayOfWeek = thisDay.getDay();//получаем число - день недели (6 суббота например)
+
+      let counter = 1;//дни месяца для заполнения 1-30/31
+
+      //ИЗ-ЗА ФЕВРАЛЯ В КОТОРОМ 28 ДНЕЙ  и это 4 недели ровно - добавляем еще одну строку
       if (daysCount/7 === 4 && thisDayOfWeek != 1) {
         weeksCount = 5;
       }
+
+      let flag = false;
 
       // создание строк в таблице
       for (let i = 0; i < weeksCount; i += 1) {
         let tr = document.createElement('tr');
         
-        //создание td внутри строки
+        //создание ячеек внутри строки
         for (let i = 0; i < 7; i += 1) {
           let td = document.createElement('td');
-          td.className = i+1;//опознавательный знак для определения дня недели if
-          // 1 2 3 4 5 6 7 
-          
-          //заполнение ячейки дня недели 
-          if (td.className == thisDayOfWeek) {//если ячейка 6 и день недели 6 то заполняем
-            td.textContent = counter;//день от 1 до 30
-            counter += 1;//увеличиваем для следующей итерации28
-            thisDayOfWeek += 1;//тоже для след итерации8
-          } 
-          tr.append(td);
 
-          //если числа месяца кончились то ячейка остается пустой
+          //заполнение ячеек 
+          if (i+1 === thisDayOfWeek) {//если совпадает наш текущий день недели и день недели 1го числа месяца - начинаем заполнять
+            flag = true;
+          } 
+          
           if (counter > daysCount) {
-            td.textContent = '';
+            flag = false;
           }
+
+          if (flag) {
+            td.textContent = counter;//день от 1 до 30
+            counter += 1;//увеличиваем для следующей итерации
+            // thisDayOfWeek += 1;//тоже для след итерации8
+          }
+          
+          tr.append(td);
         }
         
         table.append(tr);
         //после заполнения строки меняем день недели на понедельник для новой строки
-        thisDayOfWeek = 1;
+        // thisDayOfWeek = 1;
       }
       calendar.append(table);
     }
 
-    createCalendar(calendar, 2022, 02);
+    createCalendar(calendar, 2022, 01);//отсекает 31 января 2022.
   </script>
 
 </body>
