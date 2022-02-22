@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .text_box {
+      width: 300px;
+      height: 200px;
+      overflow: auto;
+      border: 10px solid #8fb7e8;
+      padding: 20px;
+    }
+
+    .button {
+      margin: 20px;
+      padding: 5px;
+      border: none;
+      background-color: #8fb7e8;
+      font-size: 16px;
+    }
+
+    .result {
+      font-family: Arial;
+      font-size: 18px;
+      margin-left: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <div class = 'text_box'>
+    
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt officia officiis molestiae explicabo, 
+      iste doloribus ab facilis similique iusto labore beatae ex debitis numquam corporis ducimus assumenda! Rem, assumenda similique.
+      Deserunt reprehenderit ipsa corrupti, in sint nesciunt iusto eius commodi impedit minus dicta sed deleniti odio provident! Eveniet suscipit commodi quae quia aperiam voluptatibus. Ex earum ipsa porro ad minus?
+      Laborum ab aliquam modi delectus autem quisquam magnam placeat consequatur, eveniet hic ipsum fugiat explicabo magni nihil ipsam maxime sequi animi voluptates quaerat! Recusandae nostrum, veniam fuga mollitia dolore iusto.
+      Cum, veritatis qui? Hic provident inventore ab nesciunt reprehenderit atque dolor rem nostrum ipsa dolorum omnis, aliquam ratione suscipit eos fugit voluptatum nisi perspiciatis tempore voluptatem eaque accusamus fugiat quidem.
+      Dolore atque officiis, quaerat neque recusandae dolorem quos sint, odio debitis non architecto minus, enim officia sequi tempora error! Unde dolore a earum itaque? Facere maiores tempore excepturi omnis est.
+      Fugit reiciendis, reprehenderit autem blanditiis nobis quibusdam debitis qui placeat quos nulla ea in aliquam error odit iusto deserunt necessitatibus dolores alias, aliquid accusamus impedit expedita, quidem assumenda eveniet. Porro!
+      Placeat excepturi earum ab repudiandae fugit, dicta voluptatum, eius expedita cumque ipsa quos cupiditate quas minima vitae, et dolor. Sint nobis ullam blanditiis neque autem temporibus nostrum aut voluptas at!
+      Architecto nemo alias obcaecati, cum eaque eligendi in non odit iste animi voluptas, praesentium distinctio nisi explicabo numquam fugiat laboriosam. Rerum pariatur cupiditate magni ratione voluptate, voluptatibus amet omnis maiores?
+      Aspernatur numquam, officia repellat aperiam vero debitis, ipsa illum quod nesciunt, id ea est perferendis eligendi quibusdam itaque? Pariatur porro libero architecto blanditiis quis aspernatur nobis consequatur consequuntur illum saepe!
+      Cumque ab voluptatem fuga omnis voluptas ullam mollitia laudantium molestiae at est! Earum amet, Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt officia officiis molestiae explicabo, 
+      iste doloribus ab facilis similique iusto labore beatae ex debitis numquam corporis ducimus assumenda! Rem, assumenda similique.
+      Deserunt reprehenderit ipsa corrupti, in sint nesciunt iusto eius commodi impedit minus dicta sed deleniti odio provident! Eveniet suscipit commodi quae quia aperiam voluptatibus. Ex earum ipsa porro ad minus?
+      Laborum ab aliquam modi delectus autem quisquam magnam placeat consequatur, eveniet hic ipsum fugiat explicabo magni nihil ipsam maxime sequi animi voluptates quaerat! Recusandae nostrum, veniam fuga mollitia dolore iusto.
+      Cum, veritatis qui? Hic provident inventore ab nesciunt reprehenderit atque dolor rem nostrum ipsa dolorum omnis, aliquam ratione suscipit eos fugit voluptatum nisi perspiciatis tempore voluptatem eaque accusamus fugiat quidem.
+      Dolore atque officiis, quaerat neque recusandae dolorem quos sint
+    </p>
+
+  </div>
+
+  <div class ='info'>
+    <button class = 'button'>Calculate scrollBottom</button>
+    <!-- тут будет появляться вычисленное значение при нажатии -->
+  </div>
+
+
+  <script>
+    //Свойство elem.scrollTop содержит размер прокрученной области при отсчёте сверху. 
+    // А как подсчитать размер прокрутки снизу (назовём его scrollBottom)?
+    // Напишите соответствующее выражение для произвольного элемента elem.
+    // P.S. Проверьте: если прокрутки нет вообще или элемент полностью прокручен – оно должно давать 0.
+    
+    function calculateScrollBottom() {
+      //вычищаю предыдущий результат, чтобы при новом нажатии кнопки он заменялся на новый
+      const info = document.querySelector('.info'); 
+      info.lastChild.remove()
+
+      //scrollHeight высота всеговсего текста
+      //scrollTop высота прокрученного наверху
+      //clientHeight высота отображаемого
+      //паддинги входят в scrollHeight поэтому не вляют на расчет
+      
+      const elem = document.querySelector('.text_box'); 
+
+      const scrollBottom = Math.round(elem.scrollHeight - elem.scrollTop - elem.clientHeight);
+     
+      //вставляем результат
+      const result = document.createElement('p'); 
+      result.textContent = `ScrollBottom = ${scrollBottom}px`
+      result.className = 'result'; 
+
+      info.append(result);
+
+      //  //если хочется проверить циферки - раскомментить логи ниже
+      // console.log(`прокручено внизу scrollBottom = ${scrollBottom}`) 
+      // console.log(`прокручено вверху scrollTop = ${elem.scrollTop}`) 
+      // console.log(`высота отображаемого clientHeight = ${elem.clientHeight}`)
+      // console.log(`высота всего текста scrollHeight = ${elem.scrollHeight} (сумма всех предыдущих)`);
+    }
+
+    const button = document.querySelector('.button'); //кнопка
+    button.onclick = calculateScrollBottom;
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .text_box {
+      width: 300px;
+      height: 200px;
+      overflow: auto;
+      border: 10px solid #8fb7e8;
+      padding: 20px;
+    }
+
+    .button {
+      margin: 20px;
+      padding: 5px;
+      border: none;
+      background-color: #8fb7e8;
+      font-size: 16px;
+    }
+
+    .result {
+      font-family: Arial;
+      font-size: 18px;
+      margin-left: 20px;
+    }
+
+    .note {
+      color: blue; 
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+  <div class = 'text_box'>
+    
+    <p>
+      <span class = 'note'>я просто сделала на том же шаблоне страницы</span> 
+
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci facere aperiam, 
+      nostrum doloribus perspiciatis doloremque velit esse dignissimos quasi. 
+      Ea incidunt nam esse assumenda voluptas atque illum totam adipisci animi.
+      Tempore consequuntur illo doloremque, explicabo sint, quam animi assumenda, magnam 
+      delectus eveniet quibusdam! Id amet repudiandae delectus quisquam obcaecati unde? Ab ducimus libero totam odit animi modi officia omnis quos.
+      Cupiditate aperiam amet deleniti asperiores eius quidem facere blanditiis 
+      nostrum quos, ducimus ut assumenda debitis nisi magnam! Optio, magnam, quam, 
+      amet obcaecati minima quisquam eos corporis fugiat sint sit architecto?
+      Iure dolor in consectetur ipsa? Vitae asperiores consequatur, ratione illo 
+      laudantium quos nihil error, harum in iure aut repudiandae officiis temporibus tenetur amet inventore. 
+      Adipisci perferendis deserunt impedit molestias dolor.
+      Nisi eligendi autem cumque? Quo dolor atque, rerum debitis provident sapiente nostrum 
+      id maiores nisi obcaecati qui pariatur alias, corporis reprehenderit quod molestias ullam? 
+      Deleniti in repellat modi tempore magni.
+    </p>
+
+  </div>
+
+  <div class ='info'>
+    <button class = 'button'>Показать ширину полосы прокрутки</button>
+    <!-- тут будет появляться вычисленное значение при нажатии -->
+  </div>
+
+
+  <script>
+    // Напишите код, который возвращает ширину стандартной полосы прокрутки.
+    // Для Windows она обычно колеблется от 12px до 20px. Если браузер не выделяет место под полосу прокрутки 
+    // (так тоже бывает, она может быть прозрачной над текстом), тогда значение может быть 0px.
+    // P.S. Ваш код должен работать в любом HTML-документе, независимо от его содержимого.
+        
+    function calculateScrollLineWidth() {
+      const elem = document.querySelector('.text_box');
+      //ширина отображаемого содержимого clientWidth, без полосы прокрутки       
+      // а с полосов прокрутки css width но с этим вариком не прокатило, поэтому сделаю через offset
+      //offsetWidth это ширина вместе с полосой и рамкой, вычесть рамку(clientLeft), вычесть clientWidth и будет ширина полосы
+
+      const scrollLineWidth = elem.offsetWidth - elem.clientLeft - elem.clientWidth; 
+
+      const result = document.createElement('p'); 
+      result.textContent = `Ширина полосы прокрутки = ${scrollLineWidth}px`;
+      result.className = 'result';
+
+      const info = document.querySelector('.info'); 
+      info.append(result);
+
+      // // логи для проверки циферок
+
+      // console.log(`ширина содержимого clientWidth = ${elem.clientWidth}`);
+      // console.log(`ширина рамки clientLeft = ${elem.clientLeft}`);
+      // console.log(`ширина полосы прокрутки ${scrollLineWidth}`)
+      // console.log(`общая ширина с рамкой offsetWidth = ${elem.offsetWidth} (сумма всех предыдущих)`);
+
+      // console.log(`css width = ${getComputedStyle(elem).width} поэтому я ее не использовала`); 
+    }
+
+    const button = document.querySelector('.button'); //кнопка
+    button.onclick = calculateScrollLineWidth;
+
+  </script>
+
+</body>
+</html>
