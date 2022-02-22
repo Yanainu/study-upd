@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <table id="table">
+    <tr>
+      <th>Имя</th>
+      <th>Фамилия</th>
+      <th>Возраст</th>
+    </tr>
+    <tr>
+      <td>John</td>
+      <td>Smith</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Pete</td>
+      <td>Brown</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <td>Ann</td>
+      <td>Lee</td>
+      <td>5</td>
+    </tr>
+  </table>
+  <!-- Может быть больше строк Напишите код для сортировки по столбцу "name". -->
+  <!-- ХОЧУ КНОПКУ -->
+  <input type='button' onclick='sortByName()' value='Сортировать по имени'>
+
+  <script>
+    // ... ваш код ...
+    function sortByName() {
+      let table = document.getElementById('table');
+      let rows = document.querySelectorAll('tr')
+
+      let arrayRows = Array.from(rows);
+      arrayRows = arrayRows.slice(1);
+      
+      //сортируем по именам, т.е. по 0 элементу каждого массива
+      arrayRows.sort(function (a, b) {
+        if (a.querySelector('td').textContent < b.querySelector('td').textContent) return -1; 
+        if (a.querySelector('td').textContent > b.querySelector('td').textContent) return 1; 
+      })
+      
+      //заполнение таблицы
+      for (let i = 0; i < arrayRows.length; i += 1) {
+        table.append(arrayRows[i])
+      }
+
+    }
+    
+  </script>
+
+</body>
+</html>

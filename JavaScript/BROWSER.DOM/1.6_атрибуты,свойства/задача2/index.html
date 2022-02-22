@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <a name="list">the list</a>
+<ul>
+  <li><a href="http://google.com">http://google.com</a></li>
+  <li><a href="/tutorial">/tutorial.html</a></li>
+  <li><a href="local/path">local/path</a></li>
+  <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+  <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+  <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+</ul>
+
+<script>
+  /*Сделайте все внешние ссылки оранжевыми, изменяя их свойство style. 
+
+    Ссылка является внешней, если:
+
+    Её href содержит ://
+    Но не начинается с http://internal.com.
+    Пример:*/
+
+
+  // добавление стиля для одной ссылки
+  // let link = document.querySelector('a');
+  // link.style.color = 'orange';
+
+  //сначала в ul попадем
+  let ul = document.body.querySelector('ul')
+
+  //идем по всем li и при соблюдении условий меняем цвет
+  for (let link of ul.querySelectorAll('a')) {
+    let exactHref = link.getAttribute('href');
+    if (exactHref.includes('://') && !(exactHref.includes('http://internal.com'))) {
+      link.style.color = 'orange';
+    }
+  }
+</script>
+</body>
+</html>

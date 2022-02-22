@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="index.css">
+  <script>
+    document.onclick = function(e) { // показывает координаты точки клика
+      coords.innerHTML = e.clientX + ':' + e.clientY;
+    };
+  </script>
+</head>
+
+<body>
+
+  Кликните в любом месте для получения координат в контексте окна.
+  <br> Это для тестирования, чтобы проверить результат, который вы получили с помощью JavaScript.
+  <br>
+  <div id="coords">(координаты покажутся здесь)</div>
+
+
+  <div id="field">
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+
+  <div class="triangle-right" style="left:-20px;top:-176px">1</div>
+  <div class="triangle-right" style="left:-10px;top:-178px">3</div>
+  <div class="triangle-right" style="left:190px;top:-40px">4</div>
+  <div class="triangle-right" style="left:200px;top:-42px">2</div>
+
+  <script> //РАБОТАЕТ  ТОЛЬКО В ПЕСОЧНИЦЕ!!!!!!!!!!!!
+    //координаты поля
+    const field = document.getElementById('field');
+    const fieldCoords = field.getBoundingClientRect();//координаты поля
+
+    //список с результатами
+    const myResultsList = document.createElement('ul');
+
+    //точка 1
+    const li1 = document.createElement('li');
+    const coords1 = `${Math.round(fieldCoords.left)}, ${Math.round(fieldCoords.top)}`;//left top
+    li1.innerHTML = `<b>Координаты точки 1:</b> ${coords1}`;
+    myResultsList.append(li1);
+
+    //точка 2
+    const li2 = document.createElement('li');
+    const coords2 = `${Math.round(fieldCoords.right)}, ${Math.round(fieldCoords.bottom)}`;//right bottom
+    //по идее можно было бы еще прибавить к координатам 1й точки width и height
+    li2.innerHTML = `<b>Координаты точки 2:</b> ${coords2}`;
+    myResultsList.append(li2);
+
+    //точка 3
+    const li3 = document.createElement('li');
+    coords3 = `${Math.round(fieldCoords.left + field.clientLeft)}, ${Math.round(fieldCoords.top + field.clientTop)}`;//то же что в 1 точке + размеры рамки
+    //еще можно было через clientWidth clientHeight но так проще
+    li3.innerHTML = `<b>Координаты точки 3:</b> ${coords3}`;
+    myResultsList.append(li3);
+
+    //точка 4
+    const li4 = document.createElement('li');
+    coords4 = `${Math.round(fieldCoords.right - field.clientLeft)}, ${Math.round(fieldCoords.bottom - field.clientTop)}`;//то же что в 2 точке - размеры рамки
+    //тоже можно было через clientWidth clientHeight но так проще
+    li4.innerHTML = `<b>Координаты точки 4:</b> ${coords4}`;
+    myResultsList.append(li4);
+
+    document.body.append(myResultsList)
+
+  </script>
+
+</body>
+</html>
