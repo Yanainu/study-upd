@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+    li {
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <ul class="tree" id="tree">
+    <li>Животные
+      <ul>
+        <li>Млекопитающие
+          <ul>
+            <li>Коровы</li>
+            <li>Ослы</li>
+            <li>Собаки</li>
+            <li>Тигры</li>
+          </ul>
+        </li>
+        <li>Другие
+          <ul>
+            <li>Змеи</li>
+            <li>Птицы</li>
+            <li>Ящерицы</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Рыбы
+      <ul>
+        <li>Аквариумные
+          <ul>
+            <li>Гуппи</li>
+            <li>Скалярии</li>
+          </ul>
+        </li>
+        <li>Морские
+          <ul>
+            <li>Морская форель</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+    //задание - чтобы при клике скрывался/раскрывался список потомков
+    //использовать делегирование, срабатывать должны клики только по слову
+
+    const tree = document.querySelector('.tree');
+
+    //переключение display на противоположный
+    function toggle(element) {
+      if (element.style.display === 'none') {
+        element.style.display = '';
+      } else {
+        element.style.display = 'none';
+      }
+    }
+
+    tree.onclick = function(event) {
+      const target = event.target; 
+      //срабатывает только если цель li
+      if (target.tagName === 'LI') {
+        const children = target.children;
+        for (let li of children) {
+          toggle(li);
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

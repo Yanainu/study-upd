@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      height: 2000px;
+      /* добавим body прокрутку, подсказка должна работать и с прокруткой */
+    }
+
+    .tooltip {
+      /* немного стилизуем подсказку, можете использовать свои стили вместо этих */
+      position: fixed;
+      padding: 10px 20px;
+      border: 1px solid #b3c9ce;
+      border-radius: 4px;
+      text-align: center;
+      font: italic 14px/1.3 sans-serif;
+      color: #333;
+      background: #fff;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+  <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+
+  <button data-tooltip="эта подсказка должна быть длиннее, чем элемент">Короткая кнопка</button>
+  <button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+
+  <p>Прокрутите страницу, чтобы кнопки оказались у верхнего края, а затем проверьте правильно ли выводятся подсказки.</p>
+
+
+  <script>// https://learn.javascript.ru/task/behavior-tooltip ззадача, текста много, суть - всплывающие подсказки у кнопок
+    // ...ваш код...
+
+    //При наведении мыши на элемент с атрибутом data-tooltip, 
+    //над ним должна показываться подсказка и скрываться при переходе на другой элемент.
+
+    //     Для решения вам понадобятся два события:
+
+    // mouseover срабатывает, когда указатель мыши заходит на элемент.
+    // mouseout срабатывает, когда указатель мыши уходит с элемента.
+
+    //вне функций - создаю дивы с подсказками, позиционирую их, по умолчанию скрываю. в функциях только про отображение
+    //(чтобы они были в области видимости над функциями )
+
+    //кнопки - чтобы взять у них дата атрибут для текста подсказки
+    const buttons = document.querySelectorAll('button');
+
+    //длинная подсказка
+    const longHint = document.createElement('div');
+    longHint.className = 'tooltip';
+    longHint.innerHTML = buttons[0].dataset.tooltip;//обратиться к первой кнопке, взять из нее дата-атрибут для текста подсказки
+    document.body.prepend(longHint);
+    longHint.style.display = 'none';//по умолчанию не видно
+
+    //позиционирование относительно первой кнопки
+    const button1Coords = buttons[0].getBoundingClientRect();
+    longHint.top = `${button1Coords.top + 5 + longHint.offsetHeight}px`//тут подсказка должна была встать над кнопкой
+
+    //короткая подсказка
+    const shortHint = document.createElement('div');
+    shortHint.className = 'tooltip';
+    shortHint.innerHTML = buttons[1].dataset.tooltip;
+    document.body.prepend(shortHint);
+    shortHint.style.display = 'none';
+
+    //позиционирование относительно второй кнопки
+    const button2Coords = buttons[1].getBoundingClientRect();
+    shortHint.left = `${button2Coords.left}`//тут должна была встать так же левее, как вторая кнопка
+
+
+    //функция отображения подсказки
+    function displayHint(event) {
+      //должно работать только при target = кнопке с нужным дата-типом
+      const target = event.target; 
+      if (target.dataset.tooltip === "эта подсказка должна быть длиннее, чем элемент") {
+        longHint.style.display = '';
+      }
+      if (target.dataset.tooltip === "HTML<br>подсказка") {
+        shortHint.style.display = '';
+      }
+    }
+    
+    //функция скрытия подсказки
+    function hideHint(event) {
+      const target = event.target; 
+      if (target.dataset.tooltip === "эта подсказка должна быть длиннее, чем элемент") {
+        longHint.style.display = 'none';
+      }
+      if (target.dataset.tooltip === "HTML<br>подсказка") {
+        shortHint.style.display = 'none';
+      }
+    }
+
+    // Примените делегирование событий: установите оба обработчика на элемент document, 
+    // чтобы отслеживать «заход» и «уход» курсора на элементы с атрибутом data-tooltip 
+    // и управлять подсказками с их же помощью.
+
+    document.addEventListener('mouseover', displayHint);
+    document.addEventListener('mouseout', hideHint);
+
+
+  </script>
+
+</body>
+</html>

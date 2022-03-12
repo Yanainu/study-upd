@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    .selected {
+      background: #0f0;
+    }
+
+    li {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  Кликни на элемент списка, чтобы выделить его.
+  <br>
+
+  <ul id="ul">
+    <li>Кристофер Робин</li>
+    <li>Винни Пух</li>
+    <li>Тигра</li>
+    <li>Кенга</li>
+    <li>Кролик. Просто Кролик.</li>
+  </ul>
+
+  <script> //https://learn.javascript.ru/task/selectable-list задачка и демо. 
+
+    function selection(event) {
+      const target = event.target;
+      //коллекция li
+      const list = document.querySelectorAll('li');
+
+      //прервать событие по умолчанию - А ПОЧЕМУ ТУТ ЭТО  НЕ СРАБАТЫВАЕТ...
+      event.preventDefault();
+
+      //  клик должен быть на li, иначе он может выделить весь ul
+      if (target.tagName === 'LI') {
+        //мы можем тыкнуть с ctrl/cmd или без них
+        if (event.ctrlKey || event.metaKey) {
+          //если с ctrl/cmd - просто переключаем класс у выбранного li, не меняем остальные li
+          target.classList.toggle('selected');
+        } else {
+          //если без ctrl/cmd
+          //то нужно чистить все selected кроме выбранного
+          for (let li of list) {
+            if (li === target) {
+              li.classList.toggle('selected')
+            } else {
+              li.className = '';
+            }
+          }
+        }
+      }
+    }
+
+    //обработчик на ul 
+    const ul = document.getElementById('ul');
+    ul.addEventListener('click', selection);
+    ul.addEventListener('dblclick', selection);
+
+  </script>
+
+</body>
+</html>

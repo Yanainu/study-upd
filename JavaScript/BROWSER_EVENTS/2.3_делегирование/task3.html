@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    table {
+       border-collapse: collapse;
+     }
+     th, td {
+       border: 1px solid black;
+       padding: 4px;
+     }
+     th {
+       cursor: pointer;
+     }
+     th:hover {
+       background: yellow;
+     }
+  </style>
+</head>
+
+<body>
+
+  <table id="grid">
+    <thead>
+      <tr>
+        <th data-type="number">Возраст</th>
+        <th data-type="string">Имя</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>5</td>
+        <td>Вася</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Петя</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Женя</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Маша</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Илья</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script> //https://learn.javascript.ru/task/sortable-table задача и работающий пример. суть - сортировка по столбику при клике
+
+    const tableHead = document.querySelector('thead');
+    //нужны массивы строк для сортировки
+    const rows = document.querySelectorAll('tr');
+    let arrayRows = Array.from(rows);
+    arrayRows = arrayRows.slice(1);//убрать заголовки имя возраст
+
+    function sort(dataType) {
+      if (dataType === 'string') {
+        //сортировка по [1] элементу, в рамках tr это lastElementChild
+        arrayRows.sort((a, b) => {
+          if (a.lastElementChild.textContent < b.lastElementChild.textContent) return -1; 
+          if (a.lastElementChild.textContent > b.lastElementChild.textContent) return 1; 
+        })
+      }
+
+      //сортировка по номерам это по [0] элементу, по firstElementchild например
+      if (dataType === 'number') {
+        arrayRows.sort((a,b) => Number(a.firstElementChild.textContent) - Number(b.firstElementChild.textContent));
+      }
+
+      //перезаполнение таблицы
+      for (let i = 0; i < arrayRows.length; i += 1) {
+        const tbody = document.querySelector('tbody');
+        tbody.append(arrayRows[i]);
+      }
+
+    }
+
+    tableHead.onclick = function(event) {
+      const target = event.target;
+      sort(target.dataset.type);//string number - прокидывается в функцию sort для выбора сортировки
+    }
+  </script>
+
+</body>
+</html>

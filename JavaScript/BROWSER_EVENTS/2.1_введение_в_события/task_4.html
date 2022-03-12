@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      width: 200px;
+      height: 150px;
+      border: 10px solid black;
+      background-color: #00FF00;
+      overflow: hidden;
+    }
+
+    #ball {
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Нажмите на поле для перемещения мяча.
+  <br> Мяч не должен выходить за границы поля.
+
+
+  <div id="field">
+    <img src="https://ru.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+  <script> //БУДЕТ РАБОТАТЬ ТОЛЬКО В ПЕСОЧНИЦЕ, БЕЗ НЕЕ НЕ ВИДИТ РАЗМЕРЫ МЯЧА. 
+    // условие - https://learn.javascript.ru/task/move-ball-field
+
+    const ball = document.getElementById('ball'); 
+    const field = document.getElementById('field');
+    ball.style.position = 'absolute'; //пишу в js для удобства копирования скрипта в песочницу
+
+    //функция с передвижением мяча
+    function moveBall(event) {
+      //отступы для центра мяча
+      let fromLeft = event.clientX - (ball.offsetWidth/2);
+      let fromTop = event.clientY - (ball.offsetHeight/2);
+
+      //ограничить мяч рамкой ссылаясь на координаты поля
+      const fieldCoords = field.getBoundingClientRect();
+
+      //ограничения по границам поля 
+      //слева
+      if (fromLeft < fieldCoords.left + field.clientLeft) {
+        fromLeft = fieldCoords.left+10; 
+      } 
+      //сверху
+      if (fromTop < fieldCoords.top + field.clientTop) {
+        fromTop = fieldCoords.top+10;
+      }
+      //снизу
+      if (fromTop > field.offsetHeight - field.clientTop) {
+        fromTop = field.offsetHeight - field.clientTop;
+      }
+      //справа
+      if (fromLeft > field.offsetWidth - field.clientLeft) {
+        fromLeft = field.offsetWidth - field.clientLeft;
+      }
+
+      ball.style.left = `${fromLeft}px`;
+      ball.style.top = `${fromTop}px`;
+    }
+
+    field.addEventListener('click', moveBall)
+  </script>
+</body>
+</html>
