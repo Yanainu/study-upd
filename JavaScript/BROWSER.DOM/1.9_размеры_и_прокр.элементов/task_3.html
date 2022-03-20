@@ -20,20 +20,19 @@
 
 
   <div id="field">
-    <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    <img src="https://en.js.cx/clipart/ball.svg" width=40 height=40 id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
   </div>
 
-  <script> // !!!!!!!!!!!!!РЕШАЕТСЯ ТОЛЬКО В ПЕСОЧНИЦЕ копировать скрипт туда. мячик без их песочницы не читает. 
-  
+  <script> 
     //коротко задание - поместить мячик в центр поля через js
 
     const field = document.getElementById('field');//поле
     const ball = document.getElementById('ball'); //мяч
-
+    console.log(ball.offsetWidth)
     //отступы для центрирования - это половина ширины/высоты поля минус половина ширины/высоты мяча
-    const fromTop = (field.clientHeight / 2) - (ball.clientHeight / 2);
-    const fromLeft = (field.clientWidth / 2) - (ball.clientWidth / 2);
+    const fromTop = (field.clientHeight/2) - (ball.clientHeight/2);
+    const fromLeft = (field.clientWidth/2) - (ball.offsetWidth/2);
 
     //задать их
     ball.style.top = `${fromTop}px`;

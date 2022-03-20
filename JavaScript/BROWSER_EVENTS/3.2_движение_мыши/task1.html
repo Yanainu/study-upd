@@ -74,8 +74,9 @@
     const readElement =  document.querySelector('a');
 
     //координаты для позиционирования подсказок
-    const roofCoords = roofElement.getBoundingClientRect();//позиционирование относительно крыши по-моему удобно для обоих
-    const readCoords = readElement.getBoundingClientRect();//для самой нижней "читать далее"
+    const roofCoords = roofElement.getBoundingClientRect();
+    const readCoords = readElement.getBoundingClientRect();
+    const houseCoords = houseElement.getBoundingClientRect();
 
     //-----------------------------------------------------
     //подсказки - создаю дивы, скрываю по умолчанию
@@ -86,8 +87,16 @@
     houseHint.textContent = houseElement.dataset.tooltip;
     document.body.append(houseHint);
 
-    //позиционирование отностиельно roofElement
-    houseHint.style.top = `${roofCoords.top - (houseHint.offsetHeight/2 + 5)}px`;
+    let body = document.body;
+    console.log(body.scrollTop)
+
+    //позиционирование - если стр. не прокручена то над houseElement, если прокручена - под houseElement
+    if (houseElement.scrollTop) {
+      houseHint.style.top = `${houseCoords.top + houseCoords.clientHeight + 5}px`;
+    } else {
+      houseHint.style.top = `${roofCoords.top - (houseHint.offsetHeight/2 + 5)}px`;
+    }
+    //а отступ слева всегда одинаковый
     houseHint.style.left = `${roofElement.offsetWidth/2 - houseHint.offsetWidth/2}px`;
 
     //-------------------------------------------------

@@ -33,10 +33,7 @@
       const target = event.target;
       //коллекция li
       const list = document.querySelectorAll('li');
-
-      //прервать событие по умолчанию - А ПОЧЕМУ ТУТ ЭТО  НЕ СРАБАТЫВАЕТ...
-      event.preventDefault();
-
+      
       //  клик должен быть на li, иначе он может выделить весь ul
       if (target.tagName === 'LI') {
         //мы можем тыкнуть с ctrl/cmd или без них
@@ -57,11 +54,16 @@
       }
     }
 
-    //обработчик на ul 
+    //отмена выделения текста при mousedown (пыталась включить в основную функцию но она начинала лагать, проще было вынести)
+    function cancellingDefault(event) {
+      event.preventDefault();
+    }
+
+    //обработчики на ul - клики и выделение текста mousedown(отменить выделение)
     const ul = document.getElementById('ul');
     ul.addEventListener('click', selection);
     ul.addEventListener('dblclick', selection);
-
+    ul.addEventListener('mousedown', cancellingDefault)
   </script>
 
 </body>

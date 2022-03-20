@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      height: 2000px;
+      /* подсказка должна работать и после прокрутки страницы */
+    }
+
+    .tooltip {
+      position: fixed;
+      z-index: 100;
+
+      padding: 10px 20px;
+
+      border: 1px solid #b3c9ce;
+      border-radius: 4px;
+      text-align: center;
+      font: italic 14px/1.3 sans-serif;
+      color: #333;
+      background: #fff;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+
+
+    }
+
+    #house {
+      margin-top: 50px;
+      width: 400px;
+      border: 1px solid brown;
+    }
+
+    #roof {
+      width: 0;
+      height: 0;
+      border-left: 200px solid transparent;
+      border-right: 200px solid transparent;
+      border-bottom: 20px solid brown;
+      margin-top: -20px;
+    }
+
+    p {
+      text-align: justify;
+      margin: 10px 3px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div data-tooltip="Здесь домашний интерьер" id="house">
+    <div data-tooltip="Здесь крыша" id="roof"></div>
+
+    <p>Жили-были на свете три поросенка. Три брата. 
+      Все одинакового роста, кругленькие, розовые, с одинаковыми веселыми хвостиками.</p>
+    <p>Даже имена у них были похожи. Звали поросят: Ниф-Ниф, Нуф-Нуф и Наф-Наф. 
+      Все лето они кувыркались в зеленой траве, грелись на солнышке, нежились в лужах.</p>
+    <p>Но вот наступила осень. Солнце уже не так сильно припекало, серые облака тянулись над пожелтевшим лесом.</p>
+
+    <p>- Пора нам подумать о зиме, - сказал как-то Наф-Наф. 
+      <a href="https://ru.wikipedia.org/wiki/%D0%A2%D1%80%D0%B8_%D0%BF%D0%BE%D1%80%D0%BE%D1%81%D1%91%D0%BD%D0%BA%D0%B0" data-tooltip="Читать далее…">Наведи курсор на меня</a></p>
+
+  </div>
+
+  <script> //суть - всплывающие подсказки при наведении на самый глубоко вложенный элемент
+    // https://learn.javascript.ru/task/behavior-nested-tooltip  - задача и демо
+
+    //создать элемент в одной функции, отображать в другой
+    const houseElement = document.getElementById('house');
+    
+    function createHint(parentElement) {
+      //координаты элемента для позиционирования подсказки
+      const coords = parentElement.getBoundingClientRect();
+      //создание подсказки
+      let currentHint = document.createElement('div');
+      currentHint.classList.add('tooltip');
+      currentHint.textContent = parentElement.dataset.tooltip;
+      parentElement.append(currentHint);
+
+      //позиционирование относительно parentElement
+      let left = parentElement.offsetWidth/2 - currentHint.offsetWidth/2;//слева всегда такой отступ
+      let top = coords.top - currentHint.offsetHeight - 5;//это если ставить над parent, 
+      //если не влезает - то ставить под parent
+      if (top < 0) {
+        top = coords.top + parentElement.offsetHeight + 5;
+      }
+      currentHint.style.left = `${left}px`;
+      currentHint.style.top = `${top}px`;
+    }
+
+    //функция отображения подсказки
+    function displayHint(event) {
+      let target = event.target;
+      if (target.tagName === 'P') {
+        createHint(target.closest('DIV'))
+      } else {
+        createHint(event.target)
+      }
+      
+    }
+
+    //функция скрытия подсказки
+    function hideHint(event) {
+      const hint = document.querySelector('.tooltip');
+      hint.remove();
+    }
+
+    //события на house 
+    houseElement.addEventListener('mouseover', displayHint) 
+    houseElement.addEventListener('mouseout', hideHint)
+
+
+  </script>
+
+</body>
+</html>

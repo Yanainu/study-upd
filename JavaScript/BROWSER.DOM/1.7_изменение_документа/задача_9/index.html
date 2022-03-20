@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul">
+        <li id="one">1</li>
+        <li id="two">4</li>
+    </ul>
+    <script>
+        const ul = document.getElementById('ul');
+        const li1 = document.getElementById('one');
+
+        const li2 = document.getElementById('two');
+        li2.textContent = '2';
+
+        const li3 = document.createElement('li');
+        li3.setAttribute('id', 'three');
+        li3.innerHTML = '3';
+        li2.after(li3);
+
+        const li4 = document.createElement('li');
+        li4.setAttribute('id', 'four');
+        li4.innerHTML = '4';
+        li3.after(li4);
+
+    </script>
+</body>
+</html>

@@ -21,24 +21,25 @@
   </fieldset>
 
   <script>  
-  //навесить обработчик на contents допустим
-  const links = document.querySelector('p');
+  //навесить обработчик на все, что является <a>
 
-  function customOpenLink(event) {
-    const target = event.target;
-    const targetParent = target.parentNode;//чтобы на второй ссылке сработало тоже
+    let contents = document.getElementById('contents');
+    contents.addEventListener('click', customOpenLink)
 
-    if (target.tagName === 'A' || targetParent.tagName === 'A') {
-      let result = confirm('Точно перейти?');
-      if (result) {
-        return;
-      } else {
-        event.preventDefault();
+    function customOpenLink(event) {
+      
+      const target = event.target;
+      //если таргет уже является ссылкой или имеется closest ссылка
+      if (target.tagName === 'A' || target.closest('a')) {
+        let result = confirm('Точно перейти?');
+        if (result) {
+          return;
+        } else {
+          event.preventDefault();
+        }
       }
+      
     }
-  }
-
-  links.addEventListener('click', customOpenLink)
   </script>
 
 </body>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <p>Нажмите "Q" и "W" вместе (язык значения не играет).</p>
+
+  <script>
+
+    function runOnKeys(func, ...args) {
+      let flag = true;//меняю на false
+      //массив из event.code
+      let pushedKeys = [];
+
+      //нажатие
+      function onKeyDown(event) {
+      //пополнение массива клавиш
+        pushedKeys.push(event.code);//пополнение при нажатии
+        console.log(pushedKeys)
+
+        //и когда все понажимали - сверяем аргументы и массив и вычищаем массив после выполнения func
+        console.log(pushedKeys.includes(args))
+        args.forEach((item)=> {
+          if (!pushedKeys.includes(item)) {
+            flag = false;
+          }
+        })
+      }
+      document.addEventListener('keydown', onKeyDown)
+
+      
+
+    }
+
+
+  
+    
+    //пример
+        runOnKeys(
+      () => alert("Привет!"),
+      "KeyQ",
+      "KeyW"
+    );
+
+    
+  </script>
+</body>
+</html>

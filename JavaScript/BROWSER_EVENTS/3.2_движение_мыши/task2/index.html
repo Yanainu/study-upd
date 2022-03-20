@@ -21,18 +21,31 @@
   <div id="tooltip" hidden>Подсказка</div>
 
   <script>
-    // для демо
-    setTimeout(function() {
+
+    function showHintAdvanced(event) {
+      const target = event.target;
+      const hint = document.getElementById('tooltip');
+      hint.classList.add('tooltip')
+      const elem = document.getElementById('elem');
+      const elemCoords = elem.getBoundingClientRect();
+
       new HoverIntent({
         elem,
         over() {
-          tooltip.hidden = false;
+          //позиционирование подсказки
+          hint.style.left = `${elemCoords.left + 5}px`;//на глаз, они не уточняли это в задании
+          hint.style.top = `${elem.elemCoords.top + 5}px`;
+          //и отобразить ее
+          hint.hidden = false;
         },
         out() {
-          tooltip.hidden = true;
+          //спрятать снова
+          hint.hidden = true;
         }
       });
-    }, 2000);
+    }
+    elem.addEventListener('mouseover', showHintAdvanced);
+    elem.addEventListener('click', alert('test'));
   </script>
 
 </body>

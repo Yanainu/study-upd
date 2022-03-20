@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <style>
+    .slider {
+      border-radius: 5px;
+      background: #E0E0E0;
+      background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+      width: 310px;
+      height: 15px;
+      margin: 5px;
+    }
+
+    .thumb {
+      width: 10px;
+      height: 25px;
+      border-radius: 3px;
+      position: relative;
+      left: 10px;
+      top: -5px;
+      background: blue;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="slider" class="slider">
+    <div class="thumb"></div>
+  </div>
+
+  <script>
+    //элементы
+    const slider = document.getElementById('slider')
+    const thumb = document.querySelector('.thumb');
+    const thumbCoords = thumb.getBoundingClientRect();
+    const sliderCoords = slider.getBoundingClientRect();
+
+    const thumbTop = thumb.offsetTop;//фиксирую в переменной отступ сверху для thumb чтобы он потом не скакал по вертикали
+
+    let moveAllowed = false;
+
+    //ЗАХВАТ
+    thumb.addEventListener('mousedown', takeThumb)
+
+    function takeThumb(event) {
+      moveAllowed = true;
+
+      thumb.style.position = 'absolute';
+      thumb.style.zIndex = 1000;
+      thumb.style.top = `${thumbTop}px`;
+      // thumb.style.left = `${}px`
+      // document.body.append(thumb);
+
+      //двигать дубликат (мы двигаем только по горизонтали, зачем тогда pageY)
+      moveThumb(event.pageX);
+    }
+
+    //ДВИЖЕНИЕ
+    function moveThumb(pageX) {
+      if (moveAllowed) {
+        //отступ слева 
+        let fromLeft = pageX;
+        if (fromLeft < sliderCoords.right-slider.offsetLeft && fromLeft >= slider.offsetLeft) {//ограничения размерами слайдера слева и справа
+            thumb.style.left = `${fromLeft}px`;
+        }
+      }
+    }
+
+    function onMouseMove(event) {
+        moveThumb(event.pageX);
+    }
+    document.addEventListener('mousemove', onMouseMove);
+
+    //ОТПУСТИТЬ
+    document.addEventListener('mouseup', dropThumb);
+
+    function dropThumb(event) {
+      moveAllowed = false;
+    }
+
+  </script>
+
+</body>
+</html>

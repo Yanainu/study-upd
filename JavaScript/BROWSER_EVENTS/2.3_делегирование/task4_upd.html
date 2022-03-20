@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      height: 2000px;
+      /* добавим body прокрутку, подсказка должна работать и с прокруткой */
+    }
+
+    .tooltip {
+      /* немного стилизуем подсказку, можете использовать свои стили вместо этих */
+      position: fixed;
+      padding: 10px 20px;
+      border: 1px solid #b3c9ce;
+      border-radius: 4px;
+      text-align: center;
+      font: italic 14px/1.3 sans-serif;
+      color: #333;
+      background: #fff;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+  <p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+
+  <button data-tooltip="эта подсказка должна быть длиннее, чем элемент">Короткая кнопка</button>
+  <button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+
+  <p>Прокрутите страницу, чтобы кнопки оказались у верхнего края, а затем проверьте правильно ли выводятся подсказки.</p>
+
+
+  <script>// https://learn.javascript.ru/task/behavior-tooltip ззадача, текста много, суть - всплывающие подсказки у кнопок
+    // ...ваш код...
+
+    //ЭЛЕМЕНТЫ которые мне понадобятся
+    //кнопки 
+    const buttons = document.querySelectorAll('button');
+    const longHintAnchor = buttons[0];
+    const shortHintAnchor = buttons[1];
+
+    //переменные, которые должны быть видны везде
+    let longHint;
+    let shortHint;
+
+    //СОЗДАНИЕ ПОДСКАЗКИ либо длинной либо короткой
+    function createHint(anchorElem) {
+
+      const currentHint = document.createElement('div');
+      currentHint.className = 'tooltip';
+      currentHint.innerHTML = anchorElem.dataset.tooltip;
+      document.body.prepend(currentHint);//сделала это до заполнения чтобы не дублировать эту строку
+
+      //зависимости от типа - мне надо их различать для скрытия, поэтому складываю в разные переменные + позиционирование относительно нужной кнопки
+      if (anchorElem === longHintAnchor) {
+        longHint = currentHint;
+        positionHint(longHintAnchor, longHint);
+      }
+      if (anchorElem === shortHintAnchor) {
+        shortHint = currentHint;
+        positionHint(shortHintAnchor, shortHint);
+      }
+
+    }
+
+    //ПОЗИЦИОНИРОВАНИЕ подсказки
+    function positionHint(anchorElem, hint) {
+
+      const anchorCoords = anchorElem.getBoundingClientRect();
+
+      //для любой подсказки - если над кнопкой места меньше, чем высота подсказки+5пх - то она не влезает, ставим ее вниз
+      if (anchorCoords.top > hint.offsetHeight ) {
+        hint.style.top = `${anchorCoords.top - 5 - hint.offsetHeight}px`;
+      } else {
+        hint.style.top = `${anchorCoords.bottom + 5}px`
+      }
+        
+      //отступ слева 
+      if (hint === longHint) {
+        hint.style.left = `0px`;
+      }
+      if (hint === shortHint) {
+        hint.style.left = `${anchorCoords.left - ((hint.offsetWidth - anchorElem.offsetWidth)/2)}px`;
+      }
+    }
+
+    //функция отображения подсказки
+    function displayHint(event) {
+      const target = event.target; 
+      if (target === longHintAnchor) {
+        createHint(longHintAnchor);
+      }
+      if (target === shortHintAnchor) {
+        createHint(shortHintAnchor)
+      }
+    }
+    
+    //функция скрытия подсказки
+    function hideHint(event) {
+      const target = event.target; 
+      if (target === longHintAnchor) {
+        longHint.remove();
+      }
+      if (target ===shortHintAnchor) {
+        shortHint.remove();
+      }
+    }
+
+    document.addEventListener('mouseover', displayHint);
+    document.addEventListener('mouseout', hideHint);
+
+
+  </script>
+
+</body>
+</html>
