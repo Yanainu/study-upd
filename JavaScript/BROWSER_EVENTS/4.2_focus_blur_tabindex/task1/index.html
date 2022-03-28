@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link type="text/css" rel="stylesheet" href="my.css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <ul>
+    <li>Кликните на div ниже, чтобы отредактировать текст.</li>
+    <li>Нажатие на Enter или потеря фокуса с ввода сохранят содержимое.</li>
+  </ul>
+
+  HTML-код разрешён.
+
+  <div id="view" class="view">Текст</div>
+
+  <script>
+    // ...ваш код...
+    // Заметьте: <textarea> должен иметь class="edit"
+    // my.css содержит стиль, чтобы <textarea> и <div> были одного размера
+
+
+    // 1. фокус
+    // 2. печатание текста
+    // 3. сохранение текста
+    // 4. блюр
+
+    //элементы
+    const div = document.querySelector('.view');
+    div.tabIndex = '1';
+    let currentText = div.innerHTML; //для сохранения текста
+    
+    //ФОКУС  - замена тега
+    function allowEdit(event) {
+      //создаем textarea
+      let textarea = document.createElement('textarea');
+      textarea.classList.add('edit');
+      textarea.innerHTML = currentText;
+
+      //заменяем див на него
+      div.replaceWith(textarea);
+      textarea.focus();
+
+      //сохранение текста при печатании
+      function saveText(event) {
+        currentText = textarea.value;
+      }
+      
+      textarea.addEventListener('keypress', saveText)
+      
+    }
+
+    document.addEventListener('focusin', allowEdit);
+        
+    //РАСФОКУС сохранение текста и замена обратно на див
+    function endEdit(event) {
+      event.target.replaceWith(div);
+      div.innerHTML = currentText;
+    }
+
+    document.addEventListener('focusout', endEdit)
+
+  </script>
+
+</body>
+</html>

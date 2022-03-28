@@ -98,6 +98,7 @@
     //функция отображения подсказки
     function displayHint(event) {
       let target = event.target;
+      console.log(target)
       if (target.tagName === 'P') {
         createHint(target.closest('DIV'))
       } else {

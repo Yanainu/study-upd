@@ -22,30 +22,23 @@
 
   <script>
 
-    function showHintAdvanced(event) {
-      const target = event.target;
-      const hint = document.getElementById('tooltip');
-      hint.classList.add('tooltip')
-      const elem = document.getElementById('elem');
-      const elemCoords = elem.getBoundingClientRect();
+    // пример подсказки
+    let tooltip = document.createElement('div');
+    tooltip.className = "tooltip";
+    tooltip.innerHTML = "Tooltip";
 
-      new HoverIntent({
-        elem,
-        over() {
-          //позиционирование подсказки
-          hint.style.left = `${elemCoords.left + 5}px`;//на глаз, они не уточняли это в задании
-          hint.style.top = `${elem.elemCoords.top + 5}px`;
-          //и отобразить ее
-          hint.hidden = false;
-        },
-        out() {
-          //спрятать снова
-          hint.hidden = true;
-        }
-      });
-    }
-    elem.addEventListener('mouseover', showHintAdvanced);
-    elem.addEventListener('click', alert('test'));
+    // объект будет отслеживать движение мыши и вызывать функции over/out
+    new HoverIntent({
+      elem,
+      over() {
+        tooltip.style.left = elem.getBoundingClientRect().left + 'px';
+        tooltip.style.top = elem.getBoundingClientRect().bottom + 5 + 'px';
+        document.body.append(tooltip);
+      },
+      out() {
+        tooltip.remove();
+      }
+    });
   </script>
 
 </body>

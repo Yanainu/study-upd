@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    .show_selected {
+      margin-top: 50px;
+    }
+    .add_classic {
+      display: block;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<form action="#">
+  <select id="genres">
+    <option value="rock">Рок</option>
+    <option value="blues" selected>Блюз</option>
+  </select>
+
+</form>
+
+<button class="show_selected">Показать значение и текст выбранного пункта</button>
+<button class="add_classic">Добавить пункт классика</button>
+
+<script>
+  // Используя JavaScript:
+  // Выведите значение и текст выбранного пункта.(я так поняла они алерт хотят)
+  const button1 = document.querySelector('.show_selected');
+  const button2 = document.querySelector('.add_classic');
+
+  const select = document.getElementById('genres');
+
+  button1.addEventListener('click', showSelected);
+
+  function showSelected(event) {
+    
+    let selectedValue = select.value;
+    let allSelected = select.options;
+    let selectedIndex = select.selectedIndex;
+    let selectedText = allSelected[selectedIndex].textContent;
+
+    alert (`значение - ${selectedValue}, текст - ${selectedText}`);
+  }
+  
+  // Добавьте пункт: <option value="classic">Классика</option>.
+  //сделайте его выбранным
+  button2.addEventListener('click', addClassic);
+
+  function addClassic(event) {
+    let option = new Option('Классика', 'classic', true, true);
+    select.append(option);
+  }
+  
+
+</script>
+
+</body>
+</html>

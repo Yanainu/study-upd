@@ -10,36 +10,42 @@
 
   <script>
 
+    //на runOnKeys - сравнить нажатые клавиши с аргументами, если там содержатся все аргументы - выполнить func
     function runOnKeys(func, ...args) {
-      let flag = true;//меняю на false
-      //массив из event.code
-      let pushedKeys = [];
+      let pushedKeys = new Set();
+      let flag = true; //по умолчанию будет тру, при несовпадениях будет фолс
 
-      //нажатие
+      //при нажатии клавиши - записывать ее в массив, еще неплохо бы убрать повторы, поэтому set
+      
       function onKeyDown(event) {
-      //пополнение массива клавиш
-        pushedKeys.push(event.code);//пополнение при нажатии
-        console.log(pushedKeys)
-
-        //и когда все понажимали - сверяем аргументы и массив и вычищаем массив после выполнения func
-        console.log(pushedKeys.includes(args))
-        args.forEach((item)=> {
-          if (!pushedKeys.includes(item)) {
+        pushedKeys.add(event.code);
+        //  у нас есть массив аргс и массив нажатых клавиш. мне надо найти элементы аргс в pushedkeys
+        //   пройти по всем args и проверить есть ли элемент в pushedkeys
+        for (let arg of args) {
+          if (!pushedKeys.has(arg)) {
             flag = false;
           }
-        })
+        }
+        //и в зависимости от флага выполнять func и если выполнили то вычистить массив нажатых клавиш
+        if (flag) {
+          func();
+          pushedKeys.clear();
+        }
+
+        flag = true;
       }
-      document.addEventListener('keydown', onKeyDown)
 
-      
+      document.addEventListener('keydown', onKeyDown);
 
+      //при отпускании клавиши - убирать ее из pushedkeys, нам же нужно одновременное нажатие
+      function onKeyUp(event) {
+        pushedKeys.delete(event.code);
+      }
+      document.addEventListener('keyup', onKeyUp)
     }
-
-
-  
     
     //пример
-        runOnKeys(
+    runOnKeys(
       () => alert("Привет!"),
       "KeyQ",
       "KeyW"
