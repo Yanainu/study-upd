@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <p>Нажмите "Q" и "W" вместе (язык значения не играет).</p>
+
+  <script>
+
+    //на runOnKeys - сравнить нажатые клавиши с аргументами, если там содержатся все аргументы - выполнить func
+    function runOnKeys(func, ...args) {
+      let pushedKeys = new Set();
+      let flag = true; //по умолчанию будет тру, при несовпадениях будет фолс
+
+      //при нажатии клавиши - записывать ее в массив, еще неплохо бы убрать повторы, поэтому set
+      
+      function onKeyDown(event) {
+        pushedKeys.add(event.code);
+        //  у нас есть массив аргс и массив нажатых клавиш. мне надо найти элементы аргс в pushedkeys
+        //   пройти по всем args и проверить есть ли элемент в pushedkeys
+        for (let arg of args) {
+          if (!pushedKeys.has(arg)) {
+            flag = false;
+          }
+        }
+        //и в зависимости от флага выполнять func и если выполнили то вычистить массив нажатых клавиш
+        if (flag) {
+          func();
+          pushedKeys.clear();
+        }
+
+        flag = true;
+      }
+
+      document.addEventListener('keydown', onKeyDown);
+
+      //при отпускании клавиши - убирать ее из pushedkeys, нам же нужно одновременное нажатие
+      function onKeyUp(event) {
+        pushedKeys.delete(event.code);
+      }
+      document.addEventListener('keyup', onKeyUp)
+    }
+    
+    //пример
+    runOnKeys(
+      () => alert("Привет!"),
+      "KeyQ",
+      "KeyW"
+    );
+
+    
+  </script>
+</body>
+</html>

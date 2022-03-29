@@ -50,7 +50,7 @@
 
     for (let item of items) {
       let childrenCount = item.querySelectorAll('li').length
-      if (childrenCount != 0) {
+      if (childrenCount) {
         item.firstChild.textContent = `${item.firstChild.textContent} [${childrenCount}]`
       }
       

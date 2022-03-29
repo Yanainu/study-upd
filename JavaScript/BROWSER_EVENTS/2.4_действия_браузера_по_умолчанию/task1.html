@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Почему в коде ниже return false не работает? -->
+  <!-- Браузер переходит по указанной ссылке, но нам этого не нужно. -->
+  <!-- Как поправить? -->
+  <p>исправленная версия </p>
+  <a href="http://w3.org" onclick="handler2()">браузер не откроет w3.org</a>
+  
+  <!-- было вот так -->
+  <p>неисправленная версия</p>
+  <a href="http://w3.org" onclick="handler1()">браузер откроет w3.org</a> 
+
+<script>
+  //функция которая была
+  function handler1() {
+    alert( "..." );
+    return false;
+  }
+
+  //я исправила так. у меня return false пока нигде не сработал и вообще event.preventDefault() красивее
+  function handler2(event) {
+    event.preventDefault();
+    alert( "..." );
+  }
+</script>
+
+
+
+</body>
+</html>

@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <style>
+    #name {
+      cursor: pointer;
+    }
+  </style>
+</head>
 <body>
 
   <table id="table">
     <tr>
-      <th>Имя</th>
+      <th id="name">Имя</th>
       <th>Фамилия</th>
       <th>Возраст</th>
     </tr>
@@ -24,32 +31,55 @@
       <td>5</td>
     </tr>
   </table>
-  <!-- Может быть больше строк Напишите код для сортировки по столбцу "name". -->
-  <!-- ХОЧУ КНОПКУ -->
-  <input type='button' onclick='sortByName()' value='Сортировать по имени'>
 
   <script>
     // ... ваш код ...
-    function sortByName() {
+    //добавить dataset к таблице для отслеживания сортировки
+    // table.setAttribute('data-sort', '');//если пустой значит не сортировано
+    
+    function sortRows(arr, type) {
+
+      arr.sort(function (a, b) {
+          if (a.querySelector('td').textContent < b.querySelector('td').textContent) return type === 'ASC' ? 1 : -1; 
+          if (a.querySelector('td').textContent > b.querySelector('td').textContent) return type === 'ASC' ? -1 : 1; 
+          return 0;
+        })
+
+    }
+
+    function fillTable(arr, table) {
+      for (let i = 0; i < arr.length; i += 1) {
+        table.append(arr[i])
+      }
+
+    }
+
+    function clickHandler(event) {
       let table = document.getElementById('table');
       let rows = document.querySelectorAll('tr')
 
       let arrayRows = Array.from(rows);
       arrayRows = arrayRows.slice(1);
-      
-      //сортируем по именам, т.е. по 0 элементу каждого массива
-      arrayRows.sort(function (a, b) {
-        if (a.querySelector('td').textContent < b.querySelector('td').textContent) return -1; 
-        if (a.querySelector('td').textContent > b.querySelector('td').textContent) return 1; 
-      })
-      
-      //заполнение таблицы
-      for (let i = 0; i < arrayRows.length; i += 1) {
-        table.append(arrayRows[i])
+
+      const currentSort = table.dataset.sort;
+
+      if (!currentSort || currentSort === 'DESC') {
+        sortRows(arrayRows, 'DESC')
+        table.dataset.sort = 'ASC';
+
+      } else if (currentSort === 'ASC') {
+        sortRows(arrayRows, 'ASC');
+        table.dataset.sort = 'DESC';
       }
+
+      //заполнение таблицы
+      fillTable(arrayRows, table)
 
     }
     
+    const sortButton = document.getElementById('name');
+    
+    sortButton.addEventListener('click', clickHandler)
   </script>
 
 </body>

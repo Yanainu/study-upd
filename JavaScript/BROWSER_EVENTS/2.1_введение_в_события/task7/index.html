@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <!-- доп стили от меня -->
+  <style>
+    .visible_block {
+      position: absolute;
+      background-color: #eee;
+      width: 400px;
+      height: 130px;
+      border: 1px solid #CCC;
+      border-radius: 15px;
+
+      padding: 10px 40px;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 60px;
+      left: 5px;
+    }
+
+    .arrow_right {
+      position: absolute;
+      left: 450px;
+      cursor: pointer;
+    }
+
+    .pics_list {
+      position: absolute;
+      left: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- создайте свою разметку со стилями -->
+
+  <!-- видимый блок с серым фоном -->
+  <div class = 'visible_block'>
+
+
+
+    <ul class='pics_list'>
+      <li><img src="https://ru.js.cx/carousel/1.png"></li>
+      <li><img src="https://ru.js.cx/carousel/2.png"></li>
+      <li><img src="https://ru.js.cx/carousel/3.png"></li>
+      <li><img src="https://ru.js.cx/carousel/4.png"></li>
+      <li><img src="https://ru.js.cx/carousel/5.png"></li>
+      <li><img src="https://ru.js.cx/carousel/6.png"></li>
+      <li><img src="https://ru.js.cx/carousel/7.png"></li>
+      <li><img src="https://ru.js.cx/carousel/8.png"></li>
+      <li><img src="https://ru.js.cx/carousel/9.png"></li>
+      <li><img src="https://ru.js.cx/carousel/10.png"></li>
+    </ul>
+
+    <button class="arrow arrow_left">⇦</button>
+    <button class="arrow arrow_right">⇨</button>
+
+  </div>
+
+  <script>
+    // ...ваш код, который сделает карусель рабочей
+
+    //вешаю айди с номерами
+    const liCollection = document.querySelectorAll('li');
+    for (i = 0; i < liCollection.length; i += 1) {
+      liCollection[i].setAttribute('id', `li-${i}`);
+      // liCollection[i].style.display = 'none';
+    }
+
+    //есть массив этих элементов от 1 до 9. изначальное отображение для  0 1 2 
+    //кнопка вправо прибавляет к индексу единицу и становится не 0 1 2 а 1 2 3 и тд
+    //кнопка влево вычитает 
+
+    // //изначальное положение - функция отображающая первые три картинки. принимает стартовый индекс с 0 (0, 1, 2)
+    //потом нажатие кнопки будет запускать эту функцию с другим стартовым индексом, чтобы отоображалось допустим 3 4 5 
+
+    //отображает 3 картинки
+    let startIndex = 0;
+
+    function displayThreePics(startIndex) {
+      //отобразить три штуки начиная со startIndex
+      for (let i = startIndex; i < startIndex+3 && i <= 9; i += 1) {
+        liCollection[i].style.display = '';
+      }
+
+      //и скрыть предыдущие до startIndex(понадобится после нажатия кнопок)
+      if (startIndex > 0) {
+        for (let x = startIndex-1; x >= 0; x -= 1) {
+          console.log(liCollection[x])
+          liCollection[x].style.display = 'none';
+        }
+      }
+
+      //и скрыть следующие после нужной тройки
+      if (startIndex < 9) {
+        for (let y = startIndex+3; y <= 9; y+=1) {
+          liCollection[y].style.display = 'none';
+        }
+      }
+
+      
+    }
+    //изначальный запуск с индексом
+    displayThreePics(startIndex);
+
+    //кнопка вправо
+    let buttonRight = document.querySelector('.arrow_right');
+    let buttonLeft = document.querySelector('.arrow_left');
+
+    buttonRight.onclick = function() {
+      if (startIndex < 7) {
+        startIndex+=3;
+        displayThreePics(startIndex);
+      }
+    }
+
+    buttonLeft.onclick = function() {
+      if (startIndex >= 3) {
+        startIndex -= 3;
+        displayThreePics(startIndex);
+      }
+    }
+
+
+  </script>
+
+</body>
+</html>

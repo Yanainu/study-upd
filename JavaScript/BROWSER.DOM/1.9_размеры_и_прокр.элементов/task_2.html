@@ -82,7 +82,7 @@
       // а с полосов прокрутки css width но с этим вариком не прокатило, поэтому сделаю через offset
       //offsetWidth это ширина вместе с полосой и рамкой, вычесть рамку(clientLeft), вычесть clientWidth и будет ширина полосы
 
-      const scrollLineWidth = elem.offsetWidth - elem.clientLeft - elem.clientWidth; 
+      const scrollLineWidth = elem.offsetWidth - elem.clientLeft*2 - elem.clientWidth; 
 
       const result = document.createElement('p'); 
       result.textContent = `Ширина полосы прокрутки = ${scrollLineWidth}px`;

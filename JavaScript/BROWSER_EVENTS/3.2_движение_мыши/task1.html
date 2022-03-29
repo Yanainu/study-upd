@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      height: 2000px;
+      /* подсказка должна работать и после прокрутки страницы */
+    }
+
+    .tooltip {
+      position: fixed;
+      z-index: 100;
+
+      padding: 10px 20px;
+
+      border: 1px solid #b3c9ce;
+      border-radius: 4px;
+      text-align: center;
+      font: italic 14px/1.3 sans-serif;
+      color: #333;
+      background: #fff;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+
+
+    }
+
+    #house {
+      margin-top: 50px;
+      width: 400px;
+      border: 1px solid brown;
+    }
+
+    #roof {
+      width: 0;
+      height: 0;
+      border-left: 200px solid transparent;
+      border-right: 200px solid transparent;
+      border-bottom: 20px solid brown;
+      margin-top: -20px;
+    }
+
+    p {
+      text-align: justify;
+      margin: 10px 3px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div data-tooltip="Здесь домашний интерьер" id="house">
+    <div data-tooltip="Здесь крыша" id="roof"></div>
+
+    <p>Жили-были на свете три поросенка. Три брата. 
+      Все одинакового роста, кругленькие, розовые, с одинаковыми веселыми хвостиками.</p>
+    <p>Даже имена у них были похожи. Звали поросят: Ниф-Ниф, Нуф-Нуф и Наф-Наф. 
+      Все лето они кувыркались в зеленой траве, грелись на солнышке, нежились в лужах.</p>
+    <p>Но вот наступила осень. Солнце уже не так сильно припекало, серые облака тянулись над пожелтевшим лесом.</p>
+
+    <p>- Пора нам подумать о зиме, - сказал как-то Наф-Наф. 
+      <a href="https://ru.wikipedia.org/wiki/%D0%A2%D1%80%D0%B8_%D0%BF%D0%BE%D1%80%D0%BE%D1%81%D1%91%D0%BD%D0%BA%D0%B0" data-tooltip="Читать далее…">Наведи курсор на меня</a></p>
+
+  </div>
+
+  <script> //суть - всплывающие подсказки при наведении на самый глубоко вложенный элемент
+    // https://learn.javascript.ru/task/behavior-nested-tooltip  - задача и демо
+
+    //элементы, к которым привяжутся подсказки
+    const houseElement = document.getElementById('house');
+    const roofElement = document.getElementById('roof');
+    const readElement =  document.querySelector('a');
+
+    //координаты для позиционирования подсказок
+    const roofCoords = roofElement.getBoundingClientRect();
+    const readCoords = readElement.getBoundingClientRect();
+    const houseCoords = houseElement.getBoundingClientRect();
+
+    //-----------------------------------------------------
+    //подсказки - создаю дивы, скрываю по умолчанию
+
+    //подсказка про интерьер - отображение при наведении  на P но привязать к диву houseElement
+    const houseHint = document.createElement('div');
+    houseHint.classList.add('tooltip');
+    houseHint.textContent = houseElement.dataset.tooltip;
+    document.body.append(houseHint);
+
+    let body = document.body;
+    console.log(body.scrollTop)
+
+    //позиционирование - если стр. не прокручена то над houseElement, если прокручена - под houseElement
+    if (houseElement.scrollTop) {
+      houseHint.style.top = `${houseCoords.top + houseCoords.clientHeight + 5}px`;
+    } else {
+      houseHint.style.top = `${roofCoords.top - (houseHint.offsetHeight/2 + 5)}px`;
+    }
+    //а отступ слева всегда одинаковый
+    houseHint.style.left = `${roofElement.offsetWidth/2 - houseHint.offsetWidth/2}px`;
+
+    //-------------------------------------------------
+    //подсказка про крышу - отображение при наведении на roof, привязка к нему же
+    const roofHint = document.createElement('div');
+    roofHint.classList.add('tooltip');
+    roofHint.textContent = roofElement.dataset.tooltip;
+    document.body.append(roofHint);
+
+    //позиционирование подсказки про крышу
+    roofHint.style.top = `${roofCoords.bottom + 5}px`;
+    roofHint.style.left = `${roofElement.offsetWidth/2 - roofHint.offsetWidth/2}px`;
+
+    //-------------------------------------------------
+
+    //подсказка "читать далее"
+    const readHint = document.createElement('div');
+    readHint.classList.add('tooltip');
+    readHint.textContent = readElement.dataset.tooltip;
+    document.body.append(readHint);
+
+    //позиционирование "читать далее"
+    readHint.style.top = `${readCoords.top - readHint.offsetHeight - 5}px`;
+
+    //по умолчанию они не видны
+    roofHint.style.display = 'none';
+    houseHint.style.display = 'none';
+    readHint.style.display = 'none';
+    //----------------------------------------------
+
+    //функция отображения подсказки
+
+    function displayHint(event) {
+      const target = event.target;
+      //по таргету - прописать roof и read, в остальных случаях будет house
+      if (target === roofElement) {
+        roofHint.style.display = '';
+      } else if (target === readElement) {
+        readHint.style.display = '';
+      } else {
+        houseHint.style.display = '';
+      }
+    }
+     //----------------------------------------
+
+    //функция скрытия подсказки
+
+    function hideHint(event) {
+      const target = event.target;
+      //прятать по той же логике
+      if (target === roofElement) {
+        roofHint.style.display = 'none';
+      } else if (target === readElement) {
+        readHint.style.display = 'none';
+      } else {
+        houseHint.style.display = 'none';
+      }
+
+    }
+
+    //события на house 
+    houseElement.addEventListener('mouseover', displayHint) 
+    houseElement.addEventListener('mouseout', hideHint)
+
+
+  </script>
+
+</body>
+</html>

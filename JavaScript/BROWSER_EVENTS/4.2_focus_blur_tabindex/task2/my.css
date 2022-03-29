@@ -1,0 +1,25 @@
+/* ваши стили */
+
+.textarea {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 165px;
+    height: 90px;
+    z-index: 2;
+    display: block;
+    overflow: hidden;
+    resize: none;
+}
+
+.editing_td {
+    position: relative;
+    z-index: 1;
+}
+
+.buttons_container {
+    display: block;
+    position: absolute;
+    top: 95px;
+    left: 0px;
+}

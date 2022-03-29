@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+  
+      td,
+      th {
+        border: 1px solid black;
+        padding: 3px;
+        text-align: center;
+      }
+  
+      th {
+        font-weight: bold;
+        background-color: #E6E6E6;
+      }
+    </style>
+  </head>
+
+<body>
+
+  <div id="calendar">
+    
+  </div>
+
+
+  <script>
+    //       Напишите функцию createCalendar(elem, year, month).
+      // Вызов функции должен создать календарь для заданного месяца month в году year и вставить его в elem.
+      // Календарь должен быть таблицей, где неделя – это <tr>, а день – это <td>. 
+      //   У таблицы должен быть заголовок с названиями дней недели, каждый день – <th>, первым днём недели должен быть понедельник.
+      // Например, createCalendar(cal, 2012, 9) сгенерирует в cal следующий календарь(картинка в учебнике)
+
+    function createCalendar(elem, year, month) {
+      let calendar = document.getElementById('calendar');
+      let table = document.createElement('table');
+
+      let daysOfWeek = ['пн','вт','ср','чт','пт','сб','вс'];
+
+      //высчитываем кол-во дней в месяце
+      let date = new Date(year, month)//месяц, следующий за нужным
+      date.setDate(0);//последний день нужного месяца
+      let daysCount = date.getDate();//итого дней в нужном месяце
+
+      //и кол-во недель
+      let weeksCount = Math.ceil(daysCount/7);//кол-во строк без названий дней недели
+
+      //создание строки с днями недели
+      let firstRow = document.createElement('tr');
+      
+      for (item of daysOfWeek) {
+        let th = document.createElement('th');
+        th.textContent = item;
+        firstRow.append(th);
+      }
+
+      table.append(firstRow);
+
+      //день отсчета(день недели 1го дня месяца) и счетчик дней от 1 до 30
+
+      let thisDay = new Date(date.setDate(1));//первый день нашего месяца
+      let thisDayOfWeek = thisDay.getDay();//получаем число - день недели (6 суббота например)
+
+      let counter = 1;//дни месяца для заполнения 1-30/31
+
+      //ИЗ-ЗА ФЕВРАЛЯ В КОТОРОМ 28 ДНЕЙ  и это 4 недели ровно - добавляем еще одну строку
+      if (daysCount/7 === 4 && thisDayOfWeek != 1) {
+        weeksCount = 5;
+      }
+
+      let flag = false;
+
+      // создание строк в таблице
+      for (let i = 0; i < weeksCount; i += 1) {
+        let tr = document.createElement('tr');
+        
+        //создание ячеек внутри строки
+        for (let i = 0; i < 7; i += 1) {
+          let td = document.createElement('td');
+
+          //заполнение ячеек 
+          if (i+1 === thisDayOfWeek) {//если совпадает наш текущий день недели и день недели 1го числа месяца - начинаем заполнять
+            flag = true;
+          } 
+          
+          if (counter > daysCount) {
+            flag = false;
+          }
+
+          if (flag) {
+            td.textContent = counter;//день от 1 до 30
+            counter += 1;//увеличиваем для следующей итерации
+            // thisDayOfWeek += 1;//тоже для след итерации8
+          }
+          
+          tr.append(td);
+        }
+        
+        table.append(tr);
+        //после заполнения строки меняем день недели на понедельник для новой строки
+        // thisDayOfWeek = 1;
+      }
+      calendar.append(table);
+    }
+
+    createCalendar(calendar, 2022, 01);//отсекает 31 января 2022.
+  </script>
+
+</body>
+</html>

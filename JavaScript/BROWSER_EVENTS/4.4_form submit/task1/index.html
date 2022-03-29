@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- добавляю кнопку для вызова -->
+  <div class="call-prompt-container">
+    <button class="call-prompt-button">Нажми, чтобы вызвать окно</button>
+  </div>
+
+
+  <div id="prompt-form-container">
+    <form id="prompt-form">
+      <div id="prompt-message">Введите что-нибудь...
+        <br>Пожалуйста..</div>
+      <input name="text" type="text">
+      <input type="submit" value="Ok">
+      <input type="button" name="cancel" value="Отмена">
+    </form>
+  </div>
+
+  <script>
+    //элементы
+    const promptContainer = document.getElementById('prompt-form-container');
+    const callPromptButton = document.querySelector('.call-prompt-button');
+    const promptForm = document.forms[0];
+
+    const inputs = document.querySelectorAll('input');
+    const submitButton = inputs[1];
+    const cancelButton = inputs[2];
+    const inputText = inputs[0];
+
+    let promptMessage = document.getElementById('prompt-message');
+    
+
+    //окно изначачально спрятано
+    promptContainer.hidden = true;
+
+    //собственно функция, которую они просят
+    function showPrompt(html, callback) {
+      //заменяем содержимое в диве на html прокинутое в функцию
+      promptMessage.innerHTML = html;
+
+      //включаем видимость prompt
+      promptContainer.hidden = false;
+
+      //обработка набора текста (без этого не сохраняется набранное)
+      let typedText;//для хранения напечатанного текста
+
+      inputText.addEventListener('input', saveText);
+
+      function saveText(event) {
+        typedText = inputText.value;
+      }
+      
+      //обработка нажатий на кнопки
+      //на форму вешается событие submit
+      promptForm.addEventListener('submit', () => {
+        typedText ? value = typedText : value = 'вы ничего не ввели';
+        callback(value);
+        promptContainer.hidden = true;
+      });
+      //на кнопку отмены - клик и value=null
+      cancelButton.addEventListener('click', () => {
+        let value = null;
+        callback(value);
+        promptContainer.hidden = true;
+      })
+      
+    } 
+
+
+    //при нажатии на кнопку вызов этой функции 
+    callPromptButton.addEventListener('click', onClick);
+
+    function onClick(event) {
+      showPrompt('блаблабла напишите <strong>что-нибудь</strong>', function(value) {
+        alert(value)
+      })
+    }
+
+  </script>
+</body>
+
+</html>

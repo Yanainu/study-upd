@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #mouse {
+      display: inline-block;
+      cursor: pointer;
+      margin: 0;
+      position: absolute;
+    }
+
+    #mouse:focus {
+      outline: 1px dashed black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>Кликните по "изображению" мыши и перемещайте её с помощью клавиш со стрелками.</p>
+
+  <pre id="mouse">
+ _   _
+(q\_/p)
+ /. .\
+=\_t_/=   __
+ /   \   (
+((   ))   )
+/\) (/\  /
+\  Y  /-'
+ nn^nn
+</pre>
+
+
+  <script>
+    // ...ваш код...
+    //разрешить фокус на мышь
+    const mouse = document.getElementById('mouse');
+    const mouseDefaultCoords = mouse.getBoundingClientRect();
+    let leftCoord = mouseDefaultCoords.left;
+    let topCoord = mouseDefaultCoords.top;
+    
+    mouse.tabIndex = '1';
+
+    //управление кнопками
+    document.documentElement.addEventListener('keydown', onKeyDown);
+
+    function onKeyDown(event) {
+
+      if (event.code === 'ArrowRight' || event.code === 'KeyD') {
+        updateCoord('right', leftCoord);
+      }
+      if (event.code === 'ArrowLeft' || event.code === 'KeyA') {
+        updateCoord('left', leftCoord);
+      }
+      if (event.code === 'ArrowUp' || event.code === 'KeyW') {
+        updateCoord('up', topCoord);
+      }
+      if (event.code === 'ArrowDown' || event.code === 'KeyS') {
+        updateCoord('down', topCoord);
+      }
+    }    
+
+    //функция для хранения/обновления координаты, тип это left right up down / currentCoord - координата которую меняем
+    function updateCoord(type, currentCoord) {
+      if (type === 'up' ) {
+        topCoord = topCoord - mouse.offsetHeight;
+        mouse.style.top = `${topCoord}px`;
+      }
+      if (type === 'down') {
+        topCoord = topCoord + mouse.offsetHeight;
+        mouse.style.top = `${topCoord}px`;
+      }
+      if (type === 'left') {
+        leftCoord = leftCoord - mouse.offsetWidth;
+        mouse.style.left = `${leftCoord}px`;
+      }
+      if (type === 'right') {
+        leftCoord = leftCoord + mouse.offsetWidth;
+        mouse.style.left = `${leftCoord}px`;
+      }
+
+    }
+  </script>
+
+</body>
+
+</html>

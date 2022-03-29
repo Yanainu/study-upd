@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+    .task_1_2 {
+      border-bottom: 1px solid black;
+    }
+    #unhider {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class = 'task_1_2'>
+    <h2>Задача 1</h2>
+    <p>Добавьте JavaScript к кнопке button, чтобы при нажатии текст исчезал.</p>
+    <h2>Задача 2</h2>
+    <p>Создайте кнопку, которая будет скрывать себя по нажатию.</p>
+    <input type="button" id="hider" value="Нажмите, чтобы спрятать текст" />
+    <div id="text">Текст, исчезающий при нажатии кнопки </div>
+    <input type="button" id="unhider" value="Нажмите, чтобы вернуть текст (исчезает при нажатии)" />
+  </div>
+
+  <div class = 'task_2'>
+
+  </div>
+
+
+  <script>
+    //ЗАДАЧА 1 И 2 тут пусть через onclick
+    const hiderButton = document.getElementById('hider');
+    const unhiderButton = document.getElementById('unhider');
+    const text = document.getElementById('text');
+
+    hiderButton.onclick = function() {
+      text.style.display = 'none';
+      unhiderButton.style.display = 'block';
+    }
+    
+    unhiderButton.onclick = function() {
+      text.style.display = ''
+      this.style.display = 'none';
+    }
+
+    //ЗАДАЧА 3
+    // В переменной buttton находится кнопка. Изначально на ней нет обработчиков.
+    // Который из обработчиков запустится? Что будет выведено при клике после выполнения кода?
+
+      buttton.addEventListener("click", () => alert("1"));//сработает и выведет алерт 1
+      buttton.removeEventListener("click", () => alert("1"));//не сработает, должна быть одна функция, одинаковая запись не считается
+      buttton.onclick = () => alert(2);//сработает вторым и выведет алерт 2
+  </script>
+
+</body>
+</html>
