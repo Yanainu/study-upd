@@ -31,10 +31,13 @@ class HoverIntent {
   }
 
   onMouseOver(event) {
+
     //оно же должно срабатывать если скорость достаточно низкая т.е. sensitivity
     // if (this.sensitivity < 0.1) {
       this.over();
     // }
+
+    
     
   }
 
@@ -44,6 +47,8 @@ class HoverIntent {
 
   onMouseMove(event) {
     /* ... *///может тут надо замерять эту sensitivity а как бл
+    //может надо измерить время между mouseover mouseout
+    
   }
 
 
@@ -52,3 +57,5 @@ class HoverIntent {
   }
 
 }
+
+

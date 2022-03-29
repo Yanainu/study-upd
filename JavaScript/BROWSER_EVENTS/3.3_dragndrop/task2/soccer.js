@@ -25,6 +25,7 @@ function takeElement(event) {
         let currentElementCoords = currentElement.getBoundingClientRect();
         
         //вычисление точки где мы тыкнули мышкой относительно краев элемента
+        
         shiftX = event.clientX - currentElementCoords.left;
         shiftY = event.clientY - currentElementCoords.top;
 

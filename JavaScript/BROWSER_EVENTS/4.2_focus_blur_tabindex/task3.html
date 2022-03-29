@@ -45,7 +45,7 @@
     mouse.tabIndex = '1';
 
     //управление кнопками
-    mouse.addEventListener('keydown', onKeyDown);
+    document.documentElement.addEventListener('keydown', onKeyDown);
 
     function onKeyDown(event) {
 
@@ -66,19 +66,19 @@
     //функция для хранения/обновления координаты, тип это left right up down / currentCoord - координата которую меняем
     function updateCoord(type, currentCoord) {
       if (type === 'up' ) {
-        topCoord = defaultCoord - mouse.offsetHeight;
+        topCoord = topCoord - mouse.offsetHeight;
         mouse.style.top = `${topCoord}px`;
       }
       if (type === 'down') {
-        topCoord = defaultCoord + mouse.offsetHeight;
+        topCoord = topCoord + mouse.offsetHeight;
         mouse.style.top = `${topCoord}px`;
       }
       if (type === 'left') {
-        leftCoord = defaultCoord - mouse.offsetWidth;
+        leftCoord = leftCoord - mouse.offsetWidth;
         mouse.style.left = `${leftCoord}px`;
       }
       if (type === 'right') {
-        leftCoord = defaultCoord + mouse.offsetWidth;
+        leftCoord = leftCoord + mouse.offsetWidth;
         mouse.style.left = `${leftCoord}px`;
       }
 

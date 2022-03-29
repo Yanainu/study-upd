@@ -184,7 +184,7 @@ function KeywordCipher(abc, keyword) {
   
 
   this.encode = function (str) {
-    console.log(this.encodedAbc)
+
     let encodeResult = '';
     //let abcUpperCase = abc.toUpperCase();//заглавная версия обычного алфавита
     
