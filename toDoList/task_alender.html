@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    
+        <link rel="stylesheet" href="./style.css">
+        
+        <!-- шрифт -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    </head>
+
+<body>
+    
+    <!-- тут в header вроде логично засунуть и верхние кнопки(блок с 1й страницы) и календарь, т.к. у них один фон и закругление в макете. 
+        доп класс white-block  для коррекции и для такого же блока на 3й странице-->
+
+    <header class="header container white-block">    
+        <!-- аналогичный блок с 1й страницей -->
+        <nav class="navigation">
+            <button class="navigation__button">
+                <img class="navigation__button_icon" src="./source/task-alender/header_back-arrow-icon.svg" alt="menu">
+            </button>
+
+            <button class="navigation__button">
+                <img class="navigation__button_icon" src="./source/task-alender/header_search-icon.svg" alt="account">
+            </button>
+        </nav>
+
+         <!-- блок с календарем -->
+         <div class="calendar container">
+            
+            <!--  дата и кнопка добавления -->
+            <div class="calendar__current">
+
+                <!-- дата (пока просто текст)  -->
+                <h1 class="calendar__current_date">Oct, 2020</h1>
+
+                <!-- кнопка/переход на стр3 -->
+                <div class="calendar__current_create-task">
+                    <div class="calendar__current_create-task_icon-box">
+                        <img class="calendar__current_create-task_icon"  width="24" height="24" src="./source/task-alender/main-plus-icon.svg" alt="plus icon">
+                    </div>
+                    <div class="calendar__current_create-task_link-box">
+                        <a class="calendar__current_create-task_link" href="./create_task.html">Add Task</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- слайдер с неделей или это не слайдер я пока не поняла -->
+            <div class="calendar__week">
+
+                <div class="calendar__week_day-container">
+                    <p class="calendar__week_day-name">Mo</p>
+                    <p class="calendar__week_day-number">3</p>
+                </div>
+                <!-- доп класс active пока просто чтобы видеть -->
+                <div class="calendar__week_day-container active-day-container">
+                    <p class="calendar__week_day-name active-day">Tu</p>
+                    <p class="calendar__week_day-number active-day">4</p>
+                </div>
+
+                <div class="calendar__week_day-container">
+                    <p class="calendar__week_day-name">We</p>
+                    <p class="calendar__week_day-number">5</p>
+                </div>
+               
+                <div class="calendar__week_day-container">
+                    <p class="calendar__week_day-name">Th</p>
+                    <p class="calendar__week_day-number">6</p>
+                </div>
+
+                <div class="calendar__week_day-container">
+                    <p class="calendar__week_day-name">Fr</p>
+                    <p class="calendar__week_day-number">7</p>
+                </div>
+
+                <div class="calendar__week_day-container">
+                    <p class="calendar__week_day-name">Sa</p>
+                    <p class="calendar__week_day-number">8</p>
+                </div>
+
+                <div class="calendar__week_day-container">
+                    <p class="calendar__week_day-name">Su</p>
+                    <p class="calendar__week_day-number">9</p>
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="main">
+       
+        <!-- блок с задачами в выбранной дате - такой же как на 1й стр -->
+        <div class="tasks-block container">
+            <p class="tasks-block__head-text">Tasks</p>
+
+            <ul class="tasks-block__list">
+
+                <li class="tasks-block__list-item">
+
+                    <div class="task-block">
+
+                        <div class="task-block__items">
+
+                            <div class="task-block__icon-container">
+                                <img class="task-block__icon"  width="61" height="61" src="./source/home/to-do-list_icon.png" alt="to-do-list-icon">
+                            </div>
+   
+                            <div class="task-block__describes">
+                                <p class="task-block__describes-name">Design Changes</p>
+                                <p class="task-block__describes-date">2 Days ago</p>
+                            </div>
+                        </div>
+
+                 
+                        <div class="task-block__menu-container">
+                            <button class="task-block__menu-button">
+                                <img class="task-block__menu-button-icon" src="./source/home/context-button-icon.svg" alt="task-context-menu">
+                            </button>
+                        </div>
+
+                    </div>
+                </li>
+                
+                <li class="tasks-block__list-item">
+
+                    <div class="task-block">
+                       
+                        <div class="task-block__items">
+                           
+                            <div class="task-block__icon-container">
+                                <img class="task-block__icon"  width="61" height="61" src="./source/home/to-do-list_icon.png" alt="to-do-list-icon">
+                            </div>
+                            
+                            <div class="task-block__describes">
+                                <p class="task-block__describes-name">Design Changes</p>
+                                <p class="task-block__describes-date">2 Days ago</p>
+                            </div>
+                        </div>
+                    
+                        <div class="task-block__menu-container">
+                            <button class="task-block__menu-button">
+                                <img class="task-block__menu-button-icon" src="./source/home/context-button-icon.svg" alt="task-context-menu">
+                            </button>
+                        </div>
+
+                    </div>
+                </li>
+
+                <li class="tasks-block__list-item">
+
+                    <div class="task-block">
+                       
+                        <div class="task-block__items">
+                           
+                            <div class="task-block__icon-container">
+                                <img class="task-block__icon"  width="61" height="61" src="./source/home/to-do-list_icon.png" alt="to-do-list-icon">
+                            </div>
+                            
+                            <div class="task-block__describes">
+                                <p class="task-block__describes-name">Design Changes</p>
+                                <p class="task-block__describes-date">2 Days ago</p>
+                            </div>
+                        </div>
+                    
+                        <div class="task-block__menu-container">
+                            <button class="task-block__menu-button">
+                                <img class="task-block__menu-button-icon" src="./source/home/context-button-icon.svg" alt="task-context-menu">
+                            </button>
+                        </div>
+
+                    </div>
+                </li>
+
+                <li class="tasks-block__list-item">
+
+                    <div class="task-block">
+                       
+                        <div class="task-block__items">
+                           
+                            <div class="task-block__icon-container">
+                                <img class="task-block__icon"  width="61" height="61" src="./source/home/to-do-list_icon.png" alt="to-do-list-icon">
+                            </div>
+                            
+                            <div class="task-block__describes">
+                                <p class="task-block__describes-name">Design Changes</p>
+                                <p class="task-block__describes-date">2 Days ago</p>
+                            </div>
+                        </div>
+                    
+                        <div class="task-block__menu-container">
+                            <button class="task-block__menu-button">
+                                <img class="task-block__menu-button-icon" src="./source/home/context-button-icon.svg" alt="task-context-menu">
+                            </button>
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- футер как на 1й стр  -->
+    <footer class="footer">
+        <nav class="footer-navigation container">
+
+            <div class="footer-navigation__element">    
+                <a class="footer-navigation__element-link" href="./home.html">
+                    <img class="footer-navigation__element-icon" width="50" height="50" src="./source/footer-icons/footer-1-home-inactive.svg" alt="go to homepage">
+                </a>
+            </div>
+
+            <div class="footer-navigation__element">    
+                <a class="footer-navigation__element-link" href="./task_alender.html">
+                    <img class="footer-navigation__element-icon" width="50" height="50" src="./source/footer-icons/footer-2-calendar-active.svg" alt="go to calendar">
+                </a>
+            </div>
+
+            <div class="footer-navigation__element">    
+                <a class="footer-navigation__element-link" href="#">
+                    <img class="footer-navigation__element-icon" width="50" height="50" src="./source/footer-icons/footer-3-notification-inactive.svg" alt="notifications">
+                </a>
+            </div>
+
+            <div class="footer-navigation__element">    
+                <a class="footer-navigation__element-link" href="#">
+                    <img class="footer-navigation__element-icon" width="50" height="50" src="./source/footer-icons/footer-4-search-inactive.svg" alt="search">
+                </a>
+            </div>
+
+        </nav>
+    </footer>
+
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
