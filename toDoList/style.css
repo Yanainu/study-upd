@@ -1,0 +1,532 @@
+
+
+body {
+    /* переменные */
+    --black: #242736;
+    --black-blue: #2E3A59;
+    --blue-button: #E5EAFC;
+    --light-blue-background: #F2F5FF;
+    --light-gray-text: #AEAEB3;
+    --gradient: linear-gradient(177.23deg, #9C2CF3 -13.49%, #3A49F9 109.75%);
+
+    margin: auto;
+    max-width: 700px;
+    width: 100vw;
+    background-color: var(--light-blue-background);
+
+    font-family: 'Poppins', sans-serif;
+    color: var(--black-blue);
+}
+
+/*отступы по краям для телефонной версии */
+.header {
+    padding: 55px 59px;
+}
+
+.main { 
+    padding: 0 59px;
+}
+
+.footer {
+    padding: 56px 59px;
+    /* margin-top: 500px;отключается при отображании страниц */
+}
+/*footer*/
+.footer-navigation {
+    display: flex;
+    justify-content: space-between;
+}
+/*ОТОБРАЖЕНИЕ ГЛОБАЛЬНЫХ БЛОКОВ - HOME-PAGE, EDIT-CALENGAR-PAGE, CREATE-PAGE по умолчанию не видны*/
+
+.home-page-wrapper {
+    display: none;
+}
+
+.calendar-page-wrapper {
+    display: none;
+}
+
+.create-page-wrapper {
+    display: none;
+}
+
+.edit-page-wrapper {
+    display: none;
+}
+/* #HOME-PAGE */
+
+/* верхнее меню - бургер и аккаунт */
+.navigation {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation__button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* заголовки */
+.head-text {
+    margin: auto;
+    padding-bottom: 47px;
+}
+.head-text__main-text {
+    margin: 0;
+    font-size: 46.17px;
+    font-weight: 600;
+}
+
+.head-text__sub-text {
+    margin: 0px;
+    color: var(--black-blue);
+    font-size: 23.09px;
+    opacity: 0.54;
+    font-weight: 400;
+}
+
+/* кнопки */
+.filter-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 47px;
+}
+
+.filter-buttons__button {
+    cursor: pointer;
+    padding: 23px 37px;
+    border-radius: 75px;
+    border: 0px;
+    background-color: var(--blue-button);
+    color: var(--black);
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    box-shadow: 17px 26px 25px rgba(226, 226, 226, 0.25);
+}
+
+.filter-buttons__active-button {
+    font-weight: 600;
+    background-color: #FFFFFF;
+}
+
+/* блоки in progress / completed  общее*/
+
+.tasks-block__list {
+    padding-left: 0;
+}
+
+.tasks-block__list-item {
+    list-style-type: none;
+}
+
+.tasks-block__head-text {
+    margin-bottom: 37px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.task-block {
+    display: flex;
+    justify-content: space-between;
+    width: 518px;
+    height: 122px;
+    background-color: #FFFFFF;
+    margin: 20px 0;
+    border-radius: 20px;
+    width: 100%;
+}
+
+/* блок с фиолетовой иконкой и описанием */
+.task-block__items {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.task-block__icon-container {
+    padding: 30px;
+}
+
+/* текст - описание задачи и время */
+.task-block__title {
+    padding: 30px 0;
+}
+
+.task-block__title-name {
+    margin: 0;
+    font-size: 22.42px;
+    font-weight: 600;
+    color: var(--black);
+}
+
+.task-block__title-date {
+    margin: 0;
+    font-size: 16.48px;
+    font-weight: 400;
+    color: var(--light-gray-text);
+}
+
+/* кнопка вызова меню задачи */
+.task-block__menu-container {
+    padding: 30px;
+}
+
+.task-block__menu-button {
+    background: transparent;
+    border: 0px;
+
+    padding-top: 15px;/*никак не центрировалось изображение с кружочками по высоте, пока сделала так((*/
+    cursor: pointer;
+}
+
+
+
+/* CALENDAR-PAGE */
+
+.white-block {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding-bottom: 0;
+    box-shadow: 0px 4px 44px rgba(114, 92, 193, 0.15), 0px -7px 23px rgba(0, 0, 0, 0.02);
+}
+
+.calendar__current-and-create {
+    display: flex;
+    justify-content: space-between;
+}
+
+.current-and-create__date {
+    font-weight: 600;
+    font-size: 46.1747px;
+}
+
+/*кнопка создания задачи - одинаковая на 2 и 3 стр, общее*/
+.create-task-button {
+    padding: 28px 0;
+    border: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #FFFFFF;
+
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--gradient);
+    border-radius: 75px;
+} 
+
+.current-and-create__create-button {
+    padding: 23px 32px;
+    cursor: pointer;
+}
+
+.current-and-create__create-text {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    text-decoration: none;
+    margin-left: 12px;
+    margin: 0px 0px 0px 12px;
+}
+
+/*неделя*/
+.calendar__week {
+    padding: 50px 0;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    overflow-x: scroll;
+}
+
+.calendar__week-day-container {
+    min-width: 85px; /*иначе сжимается*/
+    border-radius: 75px;
+}
+
+.calendar__week-day-name {
+    font-weight: 500;
+    font-size: 23.187px;
+}
+
+.calendar__week-day-number {
+    font-weight: 300;
+    font-size: 23.187px;
+}
+/* активный день*/
+.active-day-container {
+    background-color: rgba(156, 44, 423, 0.1); 
+}
+
+.active-day {
+    color:rgba(58, 73, 249, 1);/*не могу поставить цвет текста ГРАДИЕНТОМ*/
+}
+
+/* #CREATE_TASK */
+
+
+
+.create-body {
+    background: url(./source/create-task/header_background.png) 0 0/cover no-repeat;
+}
+
+.edit-body {
+    background: url(./source/create-task/header_background.png) 0 0/cover no-repeat;
+}
+
+.navigation__header-text {
+    font-weight: 600;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.create-main {
+    margin: auto;
+}
+
+/*форма*/
+.task-form-container {
+    width: 100%;
+    margin: auto;
+    
+}
+
+.task-form {
+    width: 100%;
+    margin: auto;
+
+}
+
+.edit-task-form {
+    width: 100%;
+    margin: auto;
+}
+
+.task-form__inputs {
+    padding: 0 70px;
+}
+
+.task-form__input-label {
+    display: block;
+    font-weight: 400;
+    font-size: 22.423px;
+    color: #FFFFFF;
+}
+
+.task-form__input {
+    margin: 16px 0;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+    color: #FFFFFF;
+    max-width: 100%;
+
+    background: transparent;
+    border: 0;
+}
+
+.task-form__input-container {
+    border-bottom: 1px solid rgba(215, 221, 240, 0.5);
+    margin-bottom: 24px;
+}
+
+.task-form__input-container:last-child {
+    margin-bottom: 59px;   
+}
+
+/*белый блок с описанием задачи и кнопкой*/
+
+.task-form__description-create-container {
+    background-color: #FFFFFF;
+    box-shadow: 0px -9px 34px rgba(0, 0, 0, 0.25), 0px -7px 23px rgba(0, 0, 0, 0.02);
+    border-radius: 20px;
+    padding: 50px;
+}
+
+.task-form__description-edit-container {
+    background-color: #FFFFFF;
+    box-shadow: 0px -9px 34px rgba(0, 0, 0, 0.25), 0px -7px 23px rgba(0, 0, 0, 0.02);
+    border-radius: 20px;
+    padding: 50px;
+}
+
+.task-form__description-label {
+    display: block;
+    font-weight: 400;
+    font-size: 22.423px;
+    color: #BFC8E8;
+}
+
+.task-form__description-textarea {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    color: var(--black-blue);
+    font-family: 'Poppins';
+    border: 0;
+    border-bottom: 1px solid #BFC8E8;
+    width: 100%;
+    resize: none;
+}
+
+/*тут можно было переиспользовать класс с кнопки addtask на 2йстр,  но там это не кнопка а див со ссылкой*/
+.task-form__create-container {
+    padding-top: 50px;
+}
+.task-form__save-container {
+    padding-top: 50px;
+}
+
+.task-form__create-button {
+    width: 100%;
+    cursor: pointer;
+}
+
+.task-form__save-button{
+    width: 100%;
+    cursor: pointer;
+}
+/* контекстное меню задачи  */
+.task-menu {
+    width: 247px;
+    height: 159px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(67, 73, 97, 0.1);
+    box-sizing: border-box;
+    box-shadow: 0px 5px 6px rgba(67, 73, 97, 0.08);
+    border-radius: 12px;
+    padding: 9px;
+
+    display: none;
+    position: absolute;
+    top: 0px;
+}
+
+.task-menu__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    border-radius: 9px;
+    border: 0;
+    background-color: transparent;
+    width: 100%;
+    height: 47px;
+    cursor: pointer;
+}
+
+.task-menu__button:hover {
+    background: rgba(67, 73, 97, 0.06);
+}
+
+.task-menu__icon-box {
+    padding: 12px;
+
+}
+
+.task-menu__text {
+    margin: 0;
+}
+.task-menu__icon {
+    margin: 0;
+}
+
+.task-menu__text-box {
+    padding-left: 4px;
+
+}
+.task-menu__text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0F1014;
+}
+
+
+/*АДАПТИВ*/ /*футер наверное надо сделать меню-бургером? я пока не пробовала его делать  ихз как его адаптировать пока*/
+/*HOME*/
+@media (max-width: 595px) {
+    .filter-buttons {
+        flex-direction: column;
+    }
+
+    .filter-buttons__button {
+        margin: 10px auto;
+    }
+}
+
+
+@media (max-width: 507px) {
+    .task-block__title-name {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 415px) {
+    .head-text__main-text {
+        font-size: 36px;
+    }
+
+    .task-block__icon-container {
+        display: none;
+    }
+
+    .task-block__title {
+        padding-left: 20px;
+    }
+
+
+
+}
+/*TASK_ALENDER*/
+@media (max-width: 520px) {
+    .current-and-create__date {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 420px) {
+    .current-and-create__create-icon-box {
+        display: none;
+    }
+
+    .current-and-create__create-link-box {
+        margin: 23px auto;
+    }
+}
+/*CREATE_TASK*/
+
+@media (max-width: 425px) {
+    .navigation__header-text {
+        font-size: 18px;
+    }
+
+    .task-form__input {
+        font-size: 24px;
+    }
+}
+
+
+@media (max-width: 365px) {
+    .header {
+        padding: 55px 20px;
+    }
+    
+    .task-form__inputs {
+        padding: 0 30px;
+    }
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
