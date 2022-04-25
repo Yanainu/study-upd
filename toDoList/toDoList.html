@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./style.css">
+    
+    
+    <!-- шрифт -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    
+    
+    <!-- БЛОК HOME ОТОБРАЖАЕТСЯ ПРИ НАЖАТИИ НА ИКОНКУ ДОМА -->
+
+    <div class="home-page-wrapper">
+        <!-- верхние кнопки аккаунта и меню -->
+        
+        <div class="header">    
+            
+            <nav class="navigation">
+                <button class="navigation__button">
+                    <img class="navigation__button-icon" src="./source/home/home_top_menu_burger_icon.svg" alt="menu">
+                </button>
+
+                <button class="navigation__button">
+                    <img class="navigation__button-icon" src="./source/home/home_top_account_icon.svg" alt="account">
+                </button>
+            </nav>
+        </div>
+
+        <div class="main home-lists-parent">
+            <!-- заголовки -->
+            <div class="head-text">
+                <h1 class="head-text__main-text">Hello Eren Yeager!</h1>
+                <h2 class="head-text__sub-text">Have a nice day!</h2>
+            </div>
+
+            <!-- кнопки фильтрации -->
+            <div class="filter-buttons">
+                <!-- доп класс active-button при активности кнопки   -->
+                <button class="filter-buttons__button ">My Tasks</button>
+                <button class="filter-buttons__button ">In-progress</button>
+                <button class="filter-buttons__button">Completed</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- БЛОК С КАЛЕНДАРЕМ отображается при нажатии на иконку календаря -->
+
+    <div class="calendar-page-wrapper">
+        <!-- тут в header вроде логично засунуть и верхние кнопки(блок с 1й страницы) и календарь, т.к. у них один фон и закругление в макете. 
+        доп класс white-block  для коррекции и для такого же блока на 3й странице-->
+
+        <header class="header white-block">    
+            <!-- аналогичный блок с 1й страницей -->
+            <nav class="navigation">
+                <button class="navigation__button navigation__go-back-home">
+                    <img class="navigation__button-icon" src="./source/task-alender/header_back-arrow-icon.svg" alt="go back">
+                </button>
+
+                <button class="navigation__button">
+                    <img class="navigation__button-icon" src="./source/task-alender/header_search-icon.svg" alt="account">
+                </button>
+            </nav>
+
+            <!-- блок с календарем - отрисовывается сразу, кишки - в скрипте-->
+            <div class="calendar">
+                
+                <!-- вот отсюда уже через скрипт
+                <div class="calendar__current-and-create current-and-create">
+
+                    <h2 class="current-and-create__date">Oct, 2020</h2>
+
+                    <button class="current-and-create__create-button create-task-button">
+                        <img class="current-and-create__create-icon"  width="24" height="24" src="./source/task-alender/main-plus-icon.svg" alt="plus icon">
+                        <p class="current-and-create__create-text">Add Task</p>
+                    </button>
+
+                </div> -->
+
+                <!-- слайдер с неделей-->
+                <!-- <div class="calendar__week">
+
+                    <div class="calendar__week-day-container">
+                        <p class="calendar__week-day-name">Mo</p>
+                        <p class="calendar__week-day-number">3</p>
+                    </div>
+
+                    <div class="calendar__week-day-container active-day-container">
+                        <p class="calendar__week-day-name active-day">Tu</p>
+                        <p class="calendar__week-day-number active-day">4</p>
+                    </div>
+
+                    <div class="calendar__week-day-container">
+                        <p class="calendar__week-day-name">We</p>
+                        <p class="calendar__week-day-number">5</p>
+                    </div>
+                
+                    <div class="calendar__week-day-container">
+                        <p class="calendar__week-day-name">Th</p>
+                        <p class="calendar__week-day-number">6</p>
+                    </div>
+
+                    <div class="calendar__week-day-container">
+                        <p class="calendar__week-day-name">Fr</p>
+                        <p class="calendar__week-day-number">7</p>
+                    </div>
+
+                    <div class="calendar__week-day-container">
+                        <p class="calendar__week-day-name">Sa</p>
+                        <p class="calendar__week-day-number">8</p>
+                    </div>
+
+                    <div class="calendar__week-day-container">
+                        <p class="calendar__week-day-name">Su</p>
+                        <p class="calendar__week-day-number">9</p>
+                    </div>
+                </div> -->
+
+            </div>
+
+        </header>
+
+        <div class="main lists-parent">
+        
+            <!-- блок с задачами в выбранной дате - такой же как на 1й стр -->
+            <div class="date-lists-parent">
+               
+            </div>
+        </div>
+    </div>    
+
+
+
+   
+
+
+
+    <!-- CREATE-PAGE занимает все место, скрывает футер, скрою его в js -->
+
+    <div class="create-page-wrapper">
+        <div class="create-body">
+            <header class="header">    
+        
+                <nav class="navigation">
+                    <button class="navigation__button navigation__go-back-home">
+                        <img class="navigation__button-icon" src="./source/create-task/header_back-arrow.svg" alt="go back">
+                    </button>
+        
+                    <!-- надпись между кнопками  -->
+                    <div class="navigation__header-text_container">
+                        <h1 class="navigation__header-text">Create a task</h1>
+                    </div>
+        
+                    <button class="navigation__button">
+                        <img class="navigation__button-icon" src="./source/create-task/header_search-icon.svg" alt="account">
+                    </button>
+                </nav>
+        
+            </header>
+        
+            <div class="create-main">
+        
+                <!-- форма   -->
+                <div class="task-form-container">
+                    <form class="task-form" action="#">
+                        <div class="task-form__inputs">
+                            <div class="task-form__input-container">
+                                <label class="task-form__input-label" for="task-name">Name</label>
+                                <input class="task-form__input" value="" type="text" name="taskname" id="task-name">
+                            </div>
+            
+                            <div class="task-form__input-container">
+                                <label class="task-form__input-label" for="task-date">Date</label>
+                                <input class="task-form__input" value="" type="date" name="taskdate" id="task-date">
+                            </div>
+                        </div>
+                        
+        
+                        <!-- белый блок с описанием и кнопкой  -->
+                        <div class="task-form__description-create-container">
+        
+                            <div class="task-form__description-container">
+        
+                                <label class="task-form__description-label" for="task-description">Description</label>
+                                <textarea class="task-form__description-textarea" name="taskdescription" id="task-description" cols="30" rows="4" value="текст"></textarea>
+                            </div>
+                            
+                            <div class="task-form__create-container">
+                                <button class="task-form__create-button create-task-button" type="submit">Create Task</button>
+                            </div>
+                        </div>
+        
+                    </form>
+                </div>
+        
+            </div>
+        
+        </div>
+    </div>
+
+    <!-- доп страница для редактирования задачи, в макете ее  нет  -->
+
+    <div class="edit-page-wrapper">
+        <div class="edit-body">
+            <header class="header edit-header">    
+        
+                <nav class="navigation">
+                    <button class="navigation__button navigation__go-back-home">
+                        <img class="navigation__button-icon" src="./source/create-task/header_back-arrow.svg" alt="go back">
+                    </button>
+        
+                    <!-- надпись между кнопками  -->
+                    <div class="navigation__header-text_container">
+                        <h1 class="navigation__header-text">Edit this task</h1>
+                    </div>
+        
+                    <button class="navigation__button">
+                        <img class="navigation__button-icon" src="./source/create-task/header_search-icon.svg" alt="account">
+                    </button>
+                </nav>
+        
+            </header>
+        
+            <div class="edit-main">
+        
+                <!-- форма   -->
+                <div class="task-form-container">
+                    <form class="edit-task-form" action="#">
+                        <div class="task-form__inputs">
+                            <div class="task-form__input-container">
+                                <label class="task-form__input-label" for="task-name">Name</label>
+                                <input class="task-form__input" value="" type="text" name="taskname" id="edit-task-name">
+                            </div>
+            
+                            <div class="task-form__input-container">
+                                <label class="task-form__input-label" for="task-date">Date</label>
+                                <input class="task-form__input" value="" type="date" name="taskdate" id="edit-task-date">
+                            </div>
+                        </div>
+                        
+        
+                        <!-- белый блок с описанием и кнопкой  -->
+                        <div class="task-form__description-edit-container">
+        
+                            <div class="task-form__description-container">
+        
+                                <label class="task-form__description-label" for="task-description">Description</label>
+                                <textarea class="task-form__description-textarea" name="taskdescription" id="edit-task-description" cols="30" rows="4" value="текст"></textarea>
+                            </div>
+                            
+                            <div class="task-form__save-container">
+                                <button class="task-form__save-button create-task-button" type="submit">Save Task</button>
+                            </div>
+                        </div>
+        
+                    </form>
+                </div>
+        
+            </div>
+        
+        </div>
+    </div>
+    <!-- футер - отобржается всегда  -->
+
+    <footer class="footer">
+        <nav class="footer-navigation">
+
+            <div class="footer-navigation__element">    
+                <a class="footer-navigation__element-link" href="#">
+                    <img class="footer-navigation__element-icon home-icon" width="50" height="50" src="./source/footer-icons/footer-1-home-inactive.svg" alt="go to homepage">
+                </a>
+            </div>
+
+            <div class="footer-navigation__element">    
+                <a class="footer-navigation__element-link" href="#l">
+                    <img class="footer-navigation__element-icon calendar-icon" width="50" height="50" src="./source/footer-icons/footer-2-calendar-inactive.svg" alt="go to calendar">
+                </a>
+            </div>
+
+            <div class="footer-navigation__element">    
+                <a class="footer-navigation__element-link" href="#">
+                    <img class="footer-navigation__element-icon notification-icon" width="50" height="50" src="./source/footer-icons/footer-3-notification-inactive.svg" alt="notifications">
+                </a>
+            </div>
+
+            <div class="footer-navigation__element">    
+                <a class="footer-navigation__element-link" href="#">
+                    <img class="footer-navigation__element-icon search-icon" width="50" height="50" src="./source/footer-icons/footer-4-search-inactive.svg" alt="search">
+                </a>
+            </div>
+
+        </nav>
+    </footer>
+    
+    <!-- верстка контекстного меню  - кнопка duplicate кажетсчя мне бессмысленной, а вот кнопки ЗАВЕРШИТЬ (а не удалить) там нет. я заменю-->
+    <div class="task-menu">
+        <!-- редактировать -->
+        <button class="task-menu__button task-menu__edit-button">
+            <div class="task-menu__icon-box">
+                <img class="task-menu__icon" width="24" height="24" src="./source/context-menu/Edit.svg" alt="edit task">
+            </div>
+
+            <div class="task-menu__text-box">
+                <p class="task-menu__text">Edit</p>
+            </div>
+        </button>
+        <!-- ЗАВЕРШИТЬ -->
+        <button class="task-menu__button task-menu__finish-button">
+            <div class="task-menu__icon-box">
+                <img class="task-menu__icon" width="24" height="24" src="./source/context-menu/Finish.png" alt="finish task">
+            </div>
+
+            <div class="task-menu__text-box">
+                <p class="task-menu__text">Finish</p>
+            </div>
+        </button>
+        <!-- удалить  -->
+        <button class="task-menu__button task-menu__delete-button">
+            <div class="task-menu__icon-box">
+                <img class="task-menu__icon" width="24" height="24" src="./source/context-menu/Delete.svg" alt="delete task">
+            </div>
+
+            <div class="task-menu__text-box">
+                <p class="task-menu__text">Delete</p>
+            </div>
+        </button>
+    </div>
+    
+    <script src="./script.js"></script>
+    <!-- <script src="./script2.js"></script> -->
+</body>
+
+</html>
