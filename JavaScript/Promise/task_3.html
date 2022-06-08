@@ -11,8 +11,18 @@
     сделай функцию, которая будет возвращать промис, 
     который прокинет в then значение "Готово" через 3 секунды
   </p>
+  <button onclick="getPromise()">запустить(и подождать 3сек)</button>
   <script>
-
+    function getPromise() {
+      return new Promise(function(resolve, reject) {
+        setTimeout(() => {
+          const data = 'Готово';
+          resolve(data);
+        },3000)
+      }).then((data) => {
+        alert(`запущен then со значением ${data}`)
+      })
+    }
   </script>
 </body>
 </html>

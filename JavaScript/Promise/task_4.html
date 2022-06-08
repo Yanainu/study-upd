@@ -12,7 +12,13 @@
     и затем выведи их в консоль с помощью fetch, используя .then
   </p>
   <script>
-
+    new Promise(function(resolve, reject) {
+      const response = fetch('https://coaches-project-a4246-default-rtdb.europe-west1.firebasedatabase.app/coaches.json');
+      resolve(response);
+    }).then(response => {
+      const data = response.json();
+      console.log(data)
+    })
   </script>
 </body>
 </html>

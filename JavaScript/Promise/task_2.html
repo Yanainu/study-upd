@@ -14,6 +14,22 @@
     test().then(...).then(...)
   </p>
   <script>
+    new Promise(function(resolve, reject) {
+      setTimeout(() => {
+        const testData = 'строка с какими-то данными';
+        alert(`${testData} 1й then`)
+        resolve(testData);
+      }, 1000)
+    }).then(testData => {
+      //вернуть во втором then еще один промис 
+      return new Promise(function(resolve, reject) {
+        setTimeout(() => {
+        alert(`${testData} 2й then`)
+        resolve()
+      }, 500)
+      })
+      
+    })
 
   </script>
 </body>

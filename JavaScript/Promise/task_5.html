@@ -16,7 +16,23 @@
    
   </p>
   <script>
-
+    const promise = new Promise(function(resolve, reject) {
+      const resultNumber = Math.random();
+      if (resultNumber > 0.5) { 
+        resolve(resultNumber);
+      } else {
+        reject(resultNumber);
+      }
+    }).then(
+      resultNumber => {
+        alert(`Успех, выпало ${resultNumber}`);
+      },
+      resultNumber => {
+        alert(`Неудача, выпало ${resultNumber}`)
+      }  
+    ).finally(() => {
+      console.log('Все закончилось')
+    })
   </script>
 </body>
 </html>

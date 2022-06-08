@@ -15,17 +15,20 @@
   </p>
 
   <script>
-    let resultNumber;
     const promise = new Promise(function(resolve, reject) {
-      resultNumber = Math.random();
+      const resultNumber = Math.random();
       if (resultNumber > 0.5) { 
-        resolve();
+        resolve(resultNumber);
       } else {
-        reject();
+        reject(resultNumber);
       }
     }).then(
-      resolve => alert(`Успех, выпало ${resultNumber}`),
-      reject => alert(`Неудача, выпало ${resultNumber}`)
+      resultNumber => {
+        alert(`Успех, выпало ${resultNumber}`);
+      },
+      resultNumber => {
+        alert(`Неудача, выпало ${resultNumber}`)
+      }  
     )
 
   </script>
