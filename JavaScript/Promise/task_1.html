@@ -13,7 +13,20 @@
     с помощью Math.random(), если значение > 0.5 то промис возвращает "Успех" в then. 
     если меньше - "Неудача" в catch
   </p>
+
   <script>
+    let resultNumber;
+    const promise = new Promise(function(resolve, reject) {
+      resultNumber = Math.random();
+      if (resultNumber > 0.5) { 
+        resolve();
+      } else {
+        reject();
+      }
+    }).then(
+      resolve => alert(`Успех, выпало ${resultNumber}`),
+      reject => alert(`Неудача, выпало ${resultNumber}`)
+    )
 
   </script>
 </body>
